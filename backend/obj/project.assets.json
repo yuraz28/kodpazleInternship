@@ -469,24 +469,31 @@
     ]
   },
   "packageFolders": {
-    "/Users/yuraz28/.nuget/packages/": {}
+    "C:\\Users\\Матигоров Никита\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/yuraz28/Desktop/kod/kodpazleInternship/backend/backend.csproj",
+      "projectUniqueName": "C:\\Users\\Матигоров Никита\\Documents\\Викинги кода\\Code\\kodpazleInternship\\backend\\backend.csproj",
       "projectName": "backend",
-      "projectPath": "/Users/yuraz28/Desktop/kod/kodpazleInternship/backend/backend.csproj",
-      "packagesPath": "/Users/yuraz28/.nuget/packages/",
-      "outputPath": "/Users/yuraz28/Desktop/kod/kodpazleInternship/backend/obj/",
+      "projectPath": "C:\\Users\\Матигоров Никита\\Documents\\Викинги кода\\Code\\kodpazleInternship\\backend\\backend.csproj",
+      "packagesPath": "C:\\Users\\Матигоров Никита\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Матигоров Никита\\Documents\\Викинги кода\\Code\\kodpazleInternship\\backend\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/Users/yuraz28/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Матигоров Никита\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -499,6 +506,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -525,6 +537,24 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[7.0.16, 7.0.16]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[7.0.16, 7.0.16]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[7.0.16, 7.0.16]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[7.0.16, 7.0.16]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -533,7 +563,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.406/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }
