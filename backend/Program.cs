@@ -1,3 +1,6 @@
+using System.Text.Json.Serialization;
+using Microsoft.EntityFrameworkCore; 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -15,6 +18,17 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+builder.Services.AddSingleton<IAccountManager>(provider =>
+{
+    var optionsBuilder = new DbContextOptionsBuilder<AccountContext>();
+    optionsBuilder.UseSqlite("Data Source=AccountDataBase.db"); 
+    var accountContext = new AccountContext(optionsBuilder.Options);
+    accountContext.Database.EnsureCreated();  
+    IAccountManager accountManager = new AccountManager(accountContext);
+
+    return accountManager;
+});
 
 app.UseHttpsRedirection();
 
