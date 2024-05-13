@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ahbQx3sq9MMYGxV8oXI1GCMI3KkbiGzNpOgJEnDJIS3NbzPz4dvebGTXUozS91WuP6Z2I41ALJlDuerfv2ZMGg==",
+  "dgSpecHash": "CeaTWeEFK5Pl89Wm6979EcQ1MGwVnIJvpncuWp7krTF+C5+sNtFlWNH+/AKos/HWhveEvnpL2Qfg70VQGb7uQQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Матигоров Никита\\Documents\\Викинги кода\\Code\\kodpazleInternship\\backend\\backend.csproj",
   "expectedPackageFiles": [
@@ -10,11 +10,14 @@
     "C:\\Users\\Матигоров Никита\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "C:\\Users\\Матигоров Никита\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "C:\\Users\\Матигоров Никита\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
-    "C:\\Users\\Матигоров Никита\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512",
-    "C:\\Users\\Матигоров Никита\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.16\\microsoft.netcore.app.ref.7.0.16.nupkg.sha512",
-    "C:\\Users\\Матигоров Никита\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.16\\microsoft.windowsdesktop.app.ref.7.0.16.nupkg.sha512",
-    "C:\\Users\\Матигоров Никита\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.16\\microsoft.aspnetcore.app.ref.7.0.16.nupkg.sha512",
-    "C:\\Users\\Матигоров Никита\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.16\\microsoft.netcore.app.host.win-x64.7.0.16.nupkg.sha512"
+    "C:\\Users\\Матигоров Никита\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\Матигоров Никита\\Documents\\Викинги кода\\Code\\kodpazleInternship\\backend\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
