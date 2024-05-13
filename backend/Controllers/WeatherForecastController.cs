@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
+
 
 namespace backend.Controllers;
 
@@ -34,6 +36,13 @@ public class WeatherForecastController : ControllerBase
     public IActionResult Go()
     {
         Material text = new Material(1, 1, "Илья", "Илья", "", [1, 2, 3, 4, 5]);
-        return Ok(text.Rate);
+        return Ok(text.TimeToLearn);
     }
+
+    // [HttpPost("/api/login")]
+    // public IActionResult Login([FromBody] IdentityUser user)
+    // {
+    //     IdentityUser u = new IdentityUser(user.Email);
+    //     return Ok();
+    // }
 }
