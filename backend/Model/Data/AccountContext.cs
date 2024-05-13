@@ -2,11 +2,13 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-public class ApplicationDbContext : IdentityDbContext<User>
+public class AccountDbContext : IdentityDbContext<IdentityUser>
 {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) :
+    public AccountDbContext(DbContextOptions<AccountDbContext> options) :
         base(options)
-    { }
+    { 
+        Database.EnsureCreated();
+    } 
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
