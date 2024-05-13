@@ -19,7 +19,7 @@ public class Material
         UrlImage = urlImage;
         Rating = rating;
         Rate = Convert.ToInt32(Rating.Sum() / Rating.Count());
-        TimeToLearn = Convert.ToInt32((Information.Split()).Count());
+        TimeToLearn = Convert.ToInt32(Information.Split().Count());
     }
 
     public Material() { }
