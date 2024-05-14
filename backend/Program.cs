@@ -33,6 +33,17 @@ builder.Services.AddSingleton<IMaterialRepository>(provider =>
     return materialRepository;
 });
 
+builder.Services.AddSingleton<IManagerRepository>(provider =>
+{
+    var optionsBuilder = new DbContextOptionsBuilder<LibraryContext>();
+    optionsBuilder.UseSqlite("Data Source=LibraryDataBase.db"); 
+    var libraryContext = new LibraryContext(optionsBuilder.Options);
+    libraryContext.Database.EnsureCreated(); 
+    IManagerRepository materialRepository = new ManagerRepository(libraryContext);
+
+    return materialRepository;
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

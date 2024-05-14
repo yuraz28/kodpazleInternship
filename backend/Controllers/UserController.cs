@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;   
 
 
-public class UserContrller : ControllerBase
+public class UserController : ControllerBase
 {
     private readonly IMaterialRepository _materialRepository;
 
-    public UserContrller(IMaterialRepository materialRepository)
+    public UserController(IMaterialRepository materialRepository)
     {
         _materialRepository = materialRepository;
     }
@@ -26,7 +26,7 @@ public class UserContrller : ControllerBase
     }
 
     [HttpPost("/api/user/rate")]
-    public IActionResult AddRate([FromBody]RateMail Rate)
+    public IActionResult AddRate([FromBody]Rate Rate)
     {
         _materialRepository.AddRate(Rate);
         return Ok();
