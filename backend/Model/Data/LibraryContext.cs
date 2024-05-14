@@ -18,6 +18,7 @@ public class LibraryContext : DbContext
     { 
         modelBuilder.Entity<Material>().HasKey(t=>t.ID);
         modelBuilder.Entity<User>().HasKey(t=>t.ID);
-        modelBuilder.Entity<Rate>().HasNoKey();
+        modelBuilder.Entity<Rate>().HasKey(t=>t.ID);
+        modelBuilder.Entity<Favorite>().HasKey(t=>t.ID);
     }
 }

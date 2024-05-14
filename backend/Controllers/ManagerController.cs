@@ -39,11 +39,30 @@ public class ManagerContorller : ControllerBase
         return _manager.GetAllMaterials();
     }
 
-    [HttpPost("/api/manager/addfavorite")]
-    public IActionResult AddFavorite(int material, int user)
+    [HttpGet("/api/manager/getallfavorites")]
+    public IEnumerable<Favorite> GetAllFavorite(int userId)
     {
-        _manager.AddFavoriteMaterial(material, user);
+        return _manager.GetAllFavorite(userId);
+    }
+
+    [HttpPost("/api/manager/addfavorite")]
+    public IActionResult AddFavorite([FromBody] Favorite favorite)
+    {
+        _manager.AddFavoriteMaterial(favorite);
         return Ok();
+    }
+
+    [HttpDelete("/api/manager/deletefavorite")]
+    public IActionResult DeleteFavorite(int materialId, int userId)
+    {
+        _manager.DeleteFavorite(materialId, userId);
+        return Ok();
+    }
+
+    [HttpGet("/api/manager/getallrate")]
+    public IEnumerable<Rate> GetAllReat()
+    {
+        return _manager.GetAllRates();
     }
 
     [HttpPut("/api/manager/rate")]

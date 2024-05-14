@@ -71,16 +71,14 @@
         return _context.Materials.FirstOrDefault(t => t.ID == id);
     }
 
-    public void AddFavoriteMaterial(int materialId, int userId)
+    public List<Favorite> GetAllFavorite(int userId)
     {
-        var entity = _context.Users.FirstOrDefault(item => item.ID == userId);
+        return _context.Favorites.ToList();
+    }
 
-        if (entity != null)
-        {
-            entity.FavouritesMaterials.Add(materialId);
-            _context.SaveChanges();
-        }
-        
+    public void AddFavoriteMaterial(Favorite favorite)
+    {
+            _context.Add(favorite);
     }
 
     public void DeleteFavorite(int materialid, int userId)
@@ -111,5 +109,10 @@
     {
         _context.Rates.Where(t => t.MaterialID == rateMail && t.UserID == userId).ToList().ForEach(t => _context.Rates.Remove(t));
         _context.SaveChanges(); 
+    }
+
+    public List<Rate> GetAllRates()
+    {
+        return _context.Rates.ToList();
     }
 }

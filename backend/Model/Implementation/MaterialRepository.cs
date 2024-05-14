@@ -29,18 +29,10 @@ public class MaterialRepository : IMaterialRepository
         return _context.Materials.FirstOrDefault(t => t.ID == id);
     }
 
-    public void AddFavoriteMaterial(int materialId, int userId)
+    public void AddFavoriteMaterial(Favorite favorite)
     {
-        using (_context)
-        {
-            var entity = _context.Users.FirstOrDefault(item => item.ID == userId);
-
-            if (entity != null)
-            {
-                entity.FavouritesMaterials.Add(materialId);
-                _context.SaveChanges();
-            }
-        }
+            _context.Add(favorite);
+            _context.SaveChanges();
     }
 
     public List<Favorite> GetAllFavorite(int userId)
@@ -56,8 +48,6 @@ public class MaterialRepository : IMaterialRepository
 
     public void EditMaterial(EditMaterial material)
     {
-        using (_context)
-        {
             var entity = _context.Materials.FirstOrDefault(item => item.ID == material.ID);
 
             if (entity != null)
@@ -67,7 +57,6 @@ public class MaterialRepository : IMaterialRepository
                 if (material.UrlImage != null) entity.UrlImage = material.UrlImage;
                 _context.SaveChanges();
             }
-        }
     }
 
     public void AddRate(Rate rateMail)
@@ -79,6 +68,11 @@ public class MaterialRepository : IMaterialRepository
     {
         _context.Rates.Where(t => t.MaterialID == rateMail && t.UserID == userId).ToList().ForEach(t => _context.Rates.Remove(t));
         _context.SaveChanges(); 
+    }
+
+    public List<Rate> GetAllRates()
+    {
+        return _context.Rates.ToList();
     }
 
 

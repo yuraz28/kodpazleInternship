@@ -18,10 +18,16 @@ public class UserController : ControllerBase
         return _materialRepository.GetAllMaterials();
     }
 
-    [HttpPost("/api/user/addfavorite")]
-    public IActionResult AddFavorite(int material, int user)
+    [HttpGet("/api/user/getallfavorites")]
+    public IEnumerable<Favorite> GetAllFavorite(int userId)
     {
-        _materialRepository.AddFavoriteMaterial(material, user);
+        return _materialRepository.GetAllFavorite(userId);
+    }
+
+    [HttpPost("/api/user/addfavorite")]
+    public IActionResult AddFavorite([FromBody] Favorite favorite)
+    {
+        _materialRepository.AddFavoriteMaterial(favorite);
         return Ok();
     }
 
@@ -30,6 +36,12 @@ public class UserController : ControllerBase
     {
         _materialRepository.DeleteFavorite(materialId, userId);
         return Ok();
+    }
+
+    [HttpGet("/api/user/getallrate")]
+    public IEnumerable<Rate> GetAllReat()
+    {
+        return _materialRepository.GetAllRates();
     }
 
     [HttpPost("/api/user/rate")]
