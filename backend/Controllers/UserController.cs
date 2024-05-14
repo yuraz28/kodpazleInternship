@@ -57,4 +57,11 @@ public class UserController : ControllerBase
         _materialRepository.DeleteRate(RateId, UserId);
         return Ok();
     }
+
+    [HttpGet("/api/user/authorization")]
+    public IActionResult Authorization(string name, string password)
+    {
+        if (name == "admin" && password == "adimn") return Ok();
+        return BadRequest("Пиздец, но работает.");
+    }
 }
