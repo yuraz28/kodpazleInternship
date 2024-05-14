@@ -9,11 +9,19 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = backend
 build_property.RootNamespace = backend
+<<<<<<< HEAD
+build_property.ProjectDir = C:\Users\Матигоров Никита\Documents\Викинги кода\Code\kodpazleInternship\backend\
+=======
 build_property.ProjectDir = /Users/ilakonev/VSCodeProjects/kod/kodpazleInternship/backend/
+>>>>>>> dev_ilya
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+<<<<<<< HEAD
+build_property.MSBuildProjectDirectory = C:\Users\Матигоров Никита\Documents\Викинги кода\Code\kodpazleInternship\backend
+=======
 build_property.MSBuildProjectDirectory = /Users/ilakonev/VSCodeProjects/kod/kodpazleInternship/backend
+>>>>>>> dev_ilya
 build_property._RazorSourceGeneratorDebug = 

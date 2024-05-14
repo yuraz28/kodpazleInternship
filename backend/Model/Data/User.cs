@@ -7,8 +7,9 @@ public class User
 { 
 
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int ID { get; set; }
-    public string? Login { get; set; }
+    public Nullable<long> ID { get; set; }
+    public string? Name { get; set; }
     public string? Email { get; set; }
-    public string? Password { get; set; }       
+    public string? Password { get; set; }  
+    public List<int>? FavouritesMaterials { get; set; }
 }
