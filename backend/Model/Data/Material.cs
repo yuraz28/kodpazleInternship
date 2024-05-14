@@ -6,7 +6,7 @@ public class Material
     public string? Information { get; set; }
     public string? UrlImage { get; set; }
     public List<int>? Rating { get; set; }
-
+    public List<int> RatingIdUser { get; set; }
     public int? Rate { get; set; }
     public int? TimeToLearn { get; set; }
 
