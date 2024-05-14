@@ -37,9 +37,13 @@ public class UserController : ControllerBase
     }
 
     [HttpPost("/api/user/auth")]
-    public IActionResult Auth([FromBody] User user)
+    public IActionResult Auth(string login, string password)
     {
-        var flag = _userRepository.VerifyUser(user);
+        List<User> users = _userRepository.GetAllUsers();
+
+        User us = users.FirstOrDefault(t => t.Name == login && t.Password == password);
+
+        var flag = _userRepository.VerifyUser(us);
         if (flag) return Ok();
         return NotFound();
     }
