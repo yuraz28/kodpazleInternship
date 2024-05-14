@@ -33,12 +33,14 @@ header{
     justify-content: center;
     filter: drop-shadow(0px 3px  4px #0000003f);
 }
+
 .nav-back{
     display: flex;
+    gap: 20px;
     align-items: center;
-    width: 1200px;
-
+    width: 1150px;
 }
+
 #button-back{
     display: flex;
     align-items: center;
@@ -48,4 +50,14 @@ header{
     cursor: pointer;
     font-size: 18px;
     padding: 0px;
+}
+
+.nav-back p{
+    color: #505050;
+
+    font-family: Manrope;
+    font-size: 18px;
+    font-weight: 100;
+    line-height: 15px;
+    text-align: center;
 }
