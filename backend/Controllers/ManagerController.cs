@@ -6,10 +6,12 @@ using System.Collections.Generic;
 public class ManagerContorller : ControllerBase
 {
     private readonly IManagerRepository _manager;
+    private readonly IUserRepository _userRepository;
 
-    public ManagerContorller(IManagerRepository managerRepository)
+    public ManagerContorller(IManagerRepository managerRepository, IUserRepository userRepository)
     {
         _manager = managerRepository;
+        _userRepository = userRepository;
     }
 
     [HttpPost("/api/manager/addmaterial")]
@@ -57,5 +59,23 @@ public class ManagerContorller : ControllerBase
     public List<User> GetAllUsers()
     {
         return _manager.GetAllUsers();
+    }
+
+    [HttpPost("/api/user/register")]
+    public IActionResult Register([FromBody] User user)
+    {
+        _userRepository.AddUser(user);
+        return Ok();
+    }
+
+    [HttpDelete("/api/user/delete")]
+    public IActionResult DeleteUser(int IdUser)
+    {
+        var flag = _userRepository.DeleteUser(IdUser);
+        if (flag)
+        {
+            return Ok();
+        }
+        return NotFound();
     }
 }

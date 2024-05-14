@@ -1,4 +1,6 @@
-﻿public class UserRepository : IUserRepository
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+
+public class UserRepository : IUserRepository
 {
     private readonly LibraryContext _user;
 
@@ -33,10 +35,18 @@
         }
     }
 
-    public void DeleteUser(int id)
+    public bool DeleteUser(int id)
     {
-        _user.Users.Where(t => t.ID == id).ToList().ForEach(t => _user.Users.Remove(t));
-        _user.SaveChanges();
+        var u = _user.Users.FirstOrDefault(t => t.ID == id);
+        if (u != null)
+        {
+            _user.Users.Where(t => t.ID == id).ToList().ForEach(t => _user.Users.Remove(t));
+            _user.SaveChanges();
+            return true;
+        }
+
+        return false;
+
     }
 
     public List<User> GetAllUsers()

@@ -1,15 +1,19 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;   
+using Microsoft.AspNetCore.Identity;
+
 
 
 public class UserController : ControllerBase
 {
     private readonly IMaterialRepository _materialRepository;
+    private readonly IUserRepository _userRepository;
 
-    public UserController(IMaterialRepository materialRepository)
+    public UserController(IMaterialRepository materialRepository, IUserRepository userRepository)
     {
         _materialRepository = materialRepository;
+        _userRepository = userRepository;
     }
 
     [HttpGet("/api/user/getallmaterial")]
@@ -30,5 +34,13 @@ public class UserController : ControllerBase
     {
         _materialRepository.AddRate(Rate);
         return Ok();
+    }
+
+    [HttpPost("/api/user/auth")]
+    public IActionResult Auth([FromBody] User user)
+    {
+        var flag = _userRepository.VerifyUser(user);
+        if (flag) return Ok();
+        return NotFound();
     }
 }

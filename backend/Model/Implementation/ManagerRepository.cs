@@ -73,8 +73,7 @@
 
     public void AddFavoriteMaterial(int materialId, int userId)
     {
-        using (_context)
-        {
+        
             var entity = _context.Users.FirstOrDefault(item => item.ID == userId);
 
             if (entity != null)
@@ -82,13 +81,12 @@
                 entity.FavouritesMaterials.Add(materialId);
                 _context.SaveChanges();
             }
-        }
+        
     }
 
     public void EditMaterial(EditMaterial material)
     {
-        using (_context)
-        {
+        
             var entity = _context.Materials.FirstOrDefault(item => item.ID == material.ID);
 
             if (entity != null)
@@ -98,7 +96,7 @@
                 if (material.UrlImage != null) entity.UrlImage = material.UrlImage;
                 _context.SaveChanges();
             }
-        }
+        
     }
 
     public void AddRate(Rate rateMail)
