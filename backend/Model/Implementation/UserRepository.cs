@@ -23,7 +23,7 @@
             && user.Email.Length < 50
             && domens.Any(d => user.Email.Split('.').Last().Contains(d)))
         {
-            Console.WriteLine($"Email of {user.Name} is valid.");
+            Console.WriteLine($"Email of {user.Login} is valid.");
             _user.Users.Add(user); 
             _user.SaveChanges();
         }
@@ -51,7 +51,7 @@
 
     public bool VerifyUser(User user)
     {
-        User verify_user = _user.Users.FirstOrDefault(u => u.Name == user.Email && u.Password == user.Password);
+        User verify_user = _user.Users.FirstOrDefault(u => u.Login == user.Login && u.Password == user.Password);
         if(verify_user != null)
         {
             Console.WriteLine("Account verified.");
