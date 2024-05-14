@@ -4,6 +4,17 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options => 
+{ 
+    options.AddDefaultPolicy(builder => 
+    { 
+        builder.WithOrigins("http://127.0.0.1:5143") // Замените на ваш домен 
+              .AllowAnyHeader() 
+              .AllowAnyMethod() 
+              .AllowCredentials(); 
+    }); 
+});
+
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -22,29 +33,31 @@ builder.Services.AddSingleton<IUserRepository>(provider =>
     return userRepository;
 });
 
-builder.Services.AddSingleton<IMaterialRepository>(provider =>
+builder.Services.AddSingleton<IArticleRepository>(provider =>
 {
     var optionsBuilder = new DbContextOptionsBuilder<LibraryContext>();
     optionsBuilder.UseSqlite("Data Source=LibraryDataBase.db"); 
     var libraryContext = new LibraryContext(optionsBuilder.Options);
     libraryContext.Database.EnsureCreated(); 
-    IMaterialRepository materialRepository = new MaterialRepository(libraryContext);
+    IArticleRepository articleRepository = new ArticleRepository(libraryContext);
 
-    return materialRepository;
+    return articleRepository;
 });
 
-builder.Services.AddSingleton<IManagerRepository>(provider =>
+builder.Services.AddSingleton<IUserRepository>(provider =>
 {
     var optionsBuilder = new DbContextOptionsBuilder<LibraryContext>();
     optionsBuilder.UseSqlite("Data Source=LibraryDataBase.db"); 
     var libraryContext = new LibraryContext(optionsBuilder.Options);
     libraryContext.Database.EnsureCreated(); 
-    IManagerRepository materialRepository = new ManagerRepository(libraryContext);
+    IUserRepository userRepository = new UserRepository(libraryContext);
 
-    return materialRepository;
+    return userRepository;
 });
 
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -58,5 +71,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors();
 
 app.Run();

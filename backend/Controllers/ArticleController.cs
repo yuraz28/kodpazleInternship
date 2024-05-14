@@ -5,77 +5,77 @@ using System.Collections.Generic;
 
 public class ArticleContorller : ControllerBase
 {
-    private readonly IManagerRepository _manager;
+    private readonly IArticleRepository _context;
 
-    public ArticleContorller(IManagerRepository managerRepository)
+    public ArticleContorller(IArticleRepository articleRepository)
     {
-        _manager = managerRepository;
+        _context = articleRepository;
     }
 
     [HttpPost("/api/manager/addmaterial")]
-    public IActionResult AddMaterial([FromBody] Material material)
+    public IActionResult Add([FromBody] Article article)
     {
-        _manager.AddMaterial(material);
+        _context.Add(article);
         return Ok();
     }
 
     [HttpDelete("/api/manager/deletematerial")]
-    public IActionResult DeleteMaterial([FromBody] int materialId)
+    public IActionResult DeleteMaterial([FromBody] int articleId)
     {
-        _manager.DeleteMaterial(materialId);
+        _context.Delete(articleId);
         return Ok();
     }
 
     [HttpPost("/api/manager/editematerial")]
-    public IActionResult EditMaterial([FromBody] EditMaterial material)
+    public IActionResult EditMaterial([FromBody] EditArticle article)
     {
-        _manager.EditMaterial(material);
+        _context.EditArticle(article);
         return Ok();
     }
 
     [HttpGet("/api/manager/getallmaterial")]
-    public IEnumerable<Material> GetMaterials()
+    public IEnumerable<Article> GetMaterials()
     {
-        return _manager.GetAllMaterials();
+        return _context.GetAll();
     }
 
     [HttpGet("/api/manager/getallfavorites")]
     public IEnumerable<Favorite> GetAllFavorite(int userId)
     {
-        return _manager.GetAllFavorite(userId);
+        return _context.GetAllFavorite(userId);
     }
 
     [HttpPost("/api/manager/addfavorite")]
     public IActionResult AddFavorite([FromBody] Favorite favorite)
     {
-        _manager.AddFavoriteMaterial(favorite);
+        _context.AddFavorite(favorite);
         return Ok();
     }
 
     [HttpDelete("/api/manager/deletefavorite")]
     public IActionResult DeleteFavorite(int materialId, int userId)
     {
-        _manager.DeleteFavorite(materialId, userId);
+        _context.DeleteFavorite(materialId, userId);
         return Ok();
     }
 
     [HttpGet("/api/manager/getallrate")]
     public IEnumerable<Rate> GetAllReat()
     {
-        return _manager.GetAllRates();
+        return _context.GetAllRates();
     }
 
     [HttpPut("/api/manager/rate")]
     public IActionResult AddRate([FromBody] Rate Rate)
     {
-        _manager.AddRate(Rate);
+        _context.AddRate(Rate);
         return Ok();
     }
 
     [HttpDelete("/api/manager/deleterate")]
     public IActionResult DeleteRate(int RateId, int UserId)
     {
-        _manager.DeleteRate(RateId, UserId);
+        _context.DeleteRate(RateId, UserId);
         return Ok();
     }
 }

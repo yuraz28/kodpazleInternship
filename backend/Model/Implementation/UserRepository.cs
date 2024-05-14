@@ -1,15 +1,15 @@
 ﻿public class UserRepository : IUserRepository
 {
-    private readonly LibraryContext _user;
+    private readonly LibraryContext _context;
 
     public UserRepository(LibraryContext user)
     {
-        _user = user;
+        _context = user;
     }
 
     public void AddUser(User user)
     {
-        if(_user.Users.Any(u => u.Email == user.Email))
+        if(_context.Users.Any(u => u.Email == user.Email))
         {
             Console.WriteLine("Account with email " + user.Email + " already exists."); 
             return;
@@ -24,8 +24,8 @@
             && domens.Any(d => user.Email.Split('.').Last().Contains(d)))
         {
             Console.WriteLine($"Email of {user.Login} is valid.");
-            _user.Users.Add(user); 
-            _user.SaveChanges();
+            _context.Users.Add(user); 
+            _context.SaveChanges();
         }
         else
         {
@@ -35,24 +35,24 @@
 
     public void DeleteUser(int id)
     {
-        _user.Users.Where(t => t.ID == id).ToList().ForEach(t => _user.Users.Remove(t));
-        _user.SaveChanges();
+        _context.Users.Where(t => t.ID == id).ToList().ForEach(t => _context.Users.Remove(t));
+        _context.SaveChanges();
     }
 
     public List<User> GetAllUsers()
     {
-        return _user.Users.ToList();
+        return _context.Users.ToList();
     }
 
     public User GetUser(int id)
     {
-        return _user.Users.FirstOrDefault(t => t.ID == id);
+        return _context.Users.FirstOrDefault(t => t.ID == id);
     }
 
     public bool VerifyUser(User user)
     {
-        User verify_user = _user.Users.FirstOrDefault(u => u.Login == user.Login && u.Password == user.Password);
-        if(verify_user != null)
+        User verify_context = _context.Users.FirstOrDefault(u => u.Login == user.Login && u.Password == user.Password);
+        if(verify_context != null)
         {
             Console.WriteLine("Account verified.");
             return true;    
