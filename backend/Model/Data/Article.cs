@@ -1,8 +1,8 @@
-public class Material
+public class Article
 {
     public int ID { get; set; }
     public int IdAuthor { get; set; }
-    public string? Name {get; set;}
+    public string? Login {get; set;}
     public string? Information { get; set; }
     public string? UrlImage { get; set; }
     public int? TimeToLearn { get; set; }
@@ -19,5 +19,5 @@ public class Material
     //     TimeToLearn = Convert.ToInt32(Information.Split().Count());
     // }
 
-    public Material() { }
+    // public Material() { }
 }

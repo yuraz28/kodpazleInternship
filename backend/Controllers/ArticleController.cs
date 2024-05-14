@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;   
 
 
-public class ManagerContorller : ControllerBase
+public class ArticleContorller : ControllerBase
 {
     private readonly IManagerRepository _manager;
 
-    public ManagerContorller(IManagerRepository managerRepository)
+    public ArticleContorller(IManagerRepository managerRepository)
     {
         _manager = managerRepository;
     }

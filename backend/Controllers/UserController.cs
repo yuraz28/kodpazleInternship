@@ -5,56 +5,37 @@ using System.Collections.Generic;
 
 public class UserController : ControllerBase
 {
-    private readonly IMaterialRepository _materialRepository;
+    private readonly IUserRepository _context;
 
-    public UserController(IMaterialRepository materialRepository)
+    public UserController(IUserRepository context)
     {
-        _materialRepository = materialRepository;
+        _context = context;
     }
 
-    [HttpGet("/api/user/getallmaterial")]
-    public IEnumerable<Material> GetMaterials()
+    [HttpGet("/api/user/getall")]
+    public IEnumerable<User> GetAll()
     {
-        return _materialRepository.GetAllMaterials();
+        return _context.GetAllUsers();
     }
 
-    [HttpGet("/api/user/getallfavorites")]
-    public IEnumerable<Favorite> GetAllFavorite(int userId)
+    [HttpPost("/api/user/add")]
+    public IActionResult Add([FromBody] User user)
     {
-        return _materialRepository.GetAllFavorite(userId);
-    }
-
-    [HttpPost("/api/user/addfavorite")]
-    public IActionResult AddFavorite([FromBody] Favorite favorite)
-    {
-        _materialRepository.AddFavoriteMaterial(favorite);
+        _context.AddUser(user);
         return Ok();
     }
 
-    [HttpDelete("/api/user/deletefavorite")]
-    public IActionResult DeleteFavorite(int materialId, int userId)
+    [HttpDelete("/api/user/delete")]
+    public IActionResult Delete([FromBody] int id)
     {
-        _materialRepository.DeleteFavorite(materialId, userId);
+        _context.DeleteUser(id);
         return Ok();
     }
 
-    [HttpGet("/api/user/getallrate")]
-    public IEnumerable<Rate> GetAllReat()
+    [HttpPost("/api/user/authorization")]
+    public IActionResult Authorization(string login, string password)
     {
-        return _materialRepository.GetAllRates();
-    }
-
-    [HttpPost("/api/user/rate")]
-    public IActionResult AddRate([FromBody]Rate Rate)
-    {
-        _materialRepository.AddRate(Rate);
-        return Ok();
-    }
-
-    [HttpDelete("/api/user/deleterate")]
-    public IActionResult DeleteRate(int RateId, int UserId)
-    {
-        _materialRepository.DeleteRate(RateId, UserId);
-        return Ok();
+        if (login == "string" && password == "string") return Ok("Авторизировани");
+        return BadRequest("Не авторизировани");
     }
 }
