@@ -73,22 +73,24 @@
 
     public void AddFavoriteMaterial(int materialId, int userId)
     {
-        using (_context)
-        {
-            var entity = _context.Users.FirstOrDefault(item => item.ID == userId);
+        var entity = _context.Users.FirstOrDefault(item => item.ID == userId);
 
-            if (entity != null)
-            {
-                entity.FavouritesMaterials.Add(materialId);
-                _context.SaveChanges();
-            }
+        if (entity != null)
+        {
+            entity.FavouritesMaterials.Add(materialId);
+            _context.SaveChanges();
         }
+        
+    }
+
+    public void DeleteFavorite(int materialid, int userId)
+    {
+        _context.Favorites.Where(t => t.MaterialId == materialid && t.UserID == userId).ToList().ForEach(t => _context.Favorites.Remove(t));
+        _context.SaveChanges();
     }
 
     public void EditMaterial(EditMaterial material)
     {
-        using (_context)
-        {
             var entity = _context.Materials.FirstOrDefault(item => item.ID == material.ID);
 
             if (entity != null)
@@ -98,11 +100,16 @@
                 if (material.UrlImage != null) entity.UrlImage = material.UrlImage;
                 _context.SaveChanges();
             }
-        }
     }
 
     public void AddRate(Rate rateMail)
     {
         _context.Rates.Add(rateMail);
+    }
+
+    public void DeleteRate(int rateMail, int userId)
+    {
+        _context.Rates.Where(t => t.MaterialID == rateMail && t.UserID == userId).ToList().ForEach(t => _context.Rates.Remove(t));
+        _context.SaveChanges(); 
     }
 }

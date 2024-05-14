@@ -25,10 +25,24 @@ public class UserController : ControllerBase
         return Ok();
     }
 
+    [HttpDelete("/api/user/deletefavorite")]
+    public IActionResult DeleteFavorite(int materialId, int userId)
+    {
+        _materialRepository.DeleteFavorite(materialId, userId);
+        return Ok();
+    }
+
     [HttpPost("/api/user/rate")]
     public IActionResult AddRate([FromBody]Rate Rate)
     {
         _materialRepository.AddRate(Rate);
+        return Ok();
+    }
+
+    [HttpDelete("/api/user/deleterate")]
+    public IActionResult DeleteRate(int RateId, int UserId)
+    {
+        _materialRepository.DeleteRate(RateId, UserId);
         return Ok();
     }
 }

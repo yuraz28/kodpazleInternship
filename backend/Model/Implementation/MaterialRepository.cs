@@ -43,6 +43,17 @@ public class MaterialRepository : IMaterialRepository
         }
     }
 
+    public List<Favorite> GetAllFavorite(int userId)
+    {
+        return _context.Favorites.ToList();
+    }
+
+    public void DeleteFavorite(int materialid, int userId)
+    {
+        _context.Favorites.Where(t => t.MaterialId == materialid && t.UserID == userId).ToList().ForEach(t => _context.Favorites.Remove(t));
+        _context.SaveChanges();
+    }
+
     public void EditMaterial(EditMaterial material)
     {
         using (_context)
@@ -63,4 +74,12 @@ public class MaterialRepository : IMaterialRepository
     {
         _context.Rates.Add(rateMail);
     }
+
+    public void DeleteRate(int rateMail, int userId)
+    {
+        _context.Rates.Where(t => t.MaterialID == rateMail && t.UserID == userId).ToList().ForEach(t => _context.Rates.Remove(t));
+        _context.SaveChanges(); 
+    }
+
+
 }

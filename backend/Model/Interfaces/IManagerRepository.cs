@@ -9,6 +9,8 @@
     List<Material> GetAllMaterials();
     Material GetMaterial(int id);
     void AddFavoriteMaterial(int materialId, int userId);
+    void DeleteFavorite(int materialid, int userId);
     void EditMaterial(EditMaterial material);
     void AddRate(Rate rateMail);
+    void DeleteRate(int rateMail, int userId);
 }

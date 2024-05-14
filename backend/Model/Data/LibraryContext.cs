@@ -11,6 +11,7 @@ public class LibraryContext : DbContext
     public DbSet<Material> Materials { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<Rate> Rates { get; set; }
+    public DbSet<Favorite> Favorites{ get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

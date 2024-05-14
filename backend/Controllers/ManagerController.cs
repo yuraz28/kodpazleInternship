@@ -53,6 +53,13 @@ public class ManagerContorller : ControllerBase
         return Ok();
     }
 
+    [HttpDelete("/api/manager/deleterate")]
+    public IActionResult DeleteRate(int RateId, int UserId)
+    {
+        _manager.DeleteRate(RateId, UserId);
+        return Ok();
+    }
+
     [HttpGet("/api/manager/getalluser")]
     public List<User> GetAllUsers()
     {
