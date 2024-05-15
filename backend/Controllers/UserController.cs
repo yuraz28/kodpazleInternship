@@ -29,15 +29,16 @@ public class UserController : ControllerBase
     [HttpDelete("/api/user")]
     public async Task<IActionResult> Delete([FromBody] int id)
     {
+
         _user.Delete(id);
-        return Ok();
+        return Ok("Пользователь удалён");
     }
 
     [HttpPost("/api/authorization")]
     public async Task<IActionResult> Authorization(string login, string password)
     {
         var flag = await _user.Authorization(login, password);
-        if (flag) return Ok("Авторизировани");
-        return BadRequest("Не авторизировани");
+        if (flag) return Ok("Авторизирован");
+        return NotFound("Не авторизирован");
     }
 }
