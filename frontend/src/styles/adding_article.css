@@ -8,6 +8,19 @@
     src: url(/frontend/src/fonts/Manrope-Bold.woff2);
     font-weight: 700;
 }
+iframe{
+    border: none;
+}
+ol{
+    padding-inline-start: 1em;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+ul{
+    padding-inline-start: 20px;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
 p{
     margin-block-start: 0;
     margin-block-end: 0;
@@ -229,6 +242,18 @@ header{
     border: none;
 }
 #inputnumli{
+    height: 20px;
+    font-size: 20px;
+    background: none;
+    border: none;
+}
+#inputvideo{
+    height: 20px;
+    font-size: 20px;
+    background: none;
+    border: none;
+}
+#inputphoto{
     height: 20px;
     font-size: 20px;
     background: none;
