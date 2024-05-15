@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;   
+using System.Collections.Generic;  
 
 
 public class ManagerContorller : ControllerBase

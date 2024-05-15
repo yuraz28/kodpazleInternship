@@ -50,6 +50,23 @@ builder.Services.AddSwaggerGen();
 //     return userRepository;
 // });
 
+
+// Другие настройки...
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        builder => builder.WithOrigins("http://localhost:3000") // Замените на адрес вашего фронтенд-приложения
+                        .AllowAnyHeader()
+                        .AllowAnyMethod());
+});
+
+
+// Настройка CORS
+
+
+// Остальная часть конфигурации...
+
 builder.Services.AddSingleton<IMaterialRepository>(provider =>
 {
     var optionsBuilder = new DbContextOptionsBuilder<LibraryContext>();
@@ -86,6 +103,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseCors();
 
 app.MapControllers();
 // app.MapIdentityApi<IdentityUser>();
