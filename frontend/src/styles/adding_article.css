@@ -1,0 +1,231 @@
+@font-face {
+    font-family: "Monrope";
+    src: url(/frontend/src/fonts/Manrope-Regular.woff2);
+    font-weight: 400;
+}
+@font-face {
+    font-family: "Monrope";
+    src: url(/frontend/src/fonts/Manrope-Bold.woff2);
+    font-weight: 700;
+}
+p{
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+main{
+    display: flex;
+    justify-content: center;
+    background-color: #E6E3E3;
+    font-family: "Monrope";
+    flex-grow: 1;
+}
+header{
+    font-family: "Monrope";
+    font-weight: 400;
+}
+.header-logo{
+    display: flex;
+    background-color: #191919;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+}
+.header-logo-p{
+    width: 1200px;
+}
+.nav{
+    display: flex;  
+    height: 60px;
+    align-items: center;
+    background-color: #fff;
+    justify-content: center;
+    filter: drop-shadow(0px 3px  4px #0000003f);
+}
+.nav-back{
+    display: flex;
+    align-items: center;
+    width: 1200px;
+
+}
+#button-back{
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 0px;
+}
+@media (max-width: 768px) {
+   .nav-back {
+        padding-left: 50px;
+    }
+    #button-back {
+        font-size: 14px;
+    }
+    .header-logo-p{
+        padding-left: 50px;
+    }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+   .nav-back {
+        padding-left: 50px;
+    }  
+    #button-back {
+        font-size: 16px;
+    }
+    .header-logo-p{
+        padding-left: 50px;
+    }
+}
+@media (min-width: 1200px) and (max-width: 1920px) {
+    .nav-back {
+         padding-left: 50px;
+     }  
+     #button-back {
+         font-size: 16px;
+     }
+     .header-logo-p{
+         padding-left: 50px;
+     }
+}
+.lenta{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    width: 1200px;
+    margin-top: 40px;
+}
+.lenta-add{
+    display: flex;
+    flex-direction: column;
+}
+.article_add{
+    width: 800px;
+}
+.user{
+    display: flex;
+    font-size: 18px;
+    align-items: center;
+    gap: 5px;
+}
+.line{
+    display: flex;
+    align-items: center;
+    height: 20px;
+}
+.article_title{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+#article_title{
+    height: 40px;
+    flex-grow: 1;
+    border: none;
+    background: none;
+    font-size: 24px;
+    font-weight: 700;
+}
+#article_title:focus{
+    outline: none;
+}
+#article_text:focus{
+    outline: none;
+}
+.article_text{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#article_text {
+    flex-grow: 1;
+    border: none;
+    background: none;
+    font-size: 20px;
+    font-weight: 400;
+}
+.block_category{
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    gap: 10px;
+}
+#categoryButton{
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+#next_article{
+    width: 120px;
+    height: 40px;
+    background: none;
+    border: 1px solid #4094F7;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.2s ease-in;
+}
+#next_article:hover{
+    background:#4094F7;
+    transform: scale(1.1);
+}
+#categoryButtons{
+    flex-direction: column;
+    height: auto;
+    width: 240px;
+    border-radius: 10px;
+    animation: fadeIn 1s ease-out;
+}
+#categoryButtons button{
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    font-size: 20px;
+    gap: 5px;
+    height: 40px;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.2s ease-in;
+}
+#categoryButtons button:hover{
+    transform: scale(1.1);
+}
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+/*Input*/
+#inputh1{
+    height: 40px;
+    font-size: 20px;
+    font-weight: 700;
+    background: none;
+    border: none;
+}
+#inputcode{
+    height: 20px;
+    font-size: 20px;
+    background: none;
+    border-radius: 5px;
+    font-family: monospace;
+    border: 1px solid #4094F7;
+}
+#inputli{
+    height: 20px;
+    font-size: 20px;
+    background: none;
+    border: none;
+
+}

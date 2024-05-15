@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;   
 using Microsoft.AspNetCore.Identity;
+using System.Runtime.CompilerServices;
 
 
 
@@ -37,14 +38,21 @@ public class UserController : ControllerBase
     }
 
     [HttpPost("/api/user/auth")]
-    public IActionResult Auth(string login, string password)
+    public IActionResult Auth([FromBody] UserK u)
     {
         List<User> users = _userRepository.GetAllUsers();
 
-        User us = users.FirstOrDefault(t => t.Name == login && t.Password == password);
+        User us = users.FirstOrDefault(t => t.Name == u.Login && t.Password == u.Password);
 
         var flag = _userRepository.VerifyUser(us);
         if (flag) return Ok();
         return NotFound();
     }
+
+
+    public class UserK
+{
+    public string? Login { get; set; }
+    public string? Password { get; set; }
+}
 }
