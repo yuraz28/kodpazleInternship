@@ -1,10 +1,11 @@
 document.getElementById('entrance').addEventListener('click', function() {
-    var name = document.getElementById('login').value;
+    var login = document.getElementById('login').value;
     var password = document.getElementById('password').value;
 
-    var params = new URLSearchParams();
-    params.append('login', name);
-    params.append('password', password);
+    var requestBody = {
+        "login": login,
+        "password": password
+    };
 
     var url = 'http://localhost:5050/api/user/auth';
 
@@ -12,20 +13,20 @@ document.getElementById('entrance').addEventListener('click', function() {
         method: 'POST',
         mode: 'no-cors',
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/json'
         },
-        body: params.toString()
+        body: JSON.stringify(requestBody)
     })
-   .then(function(response) {
+  .then(function(response) {
         if (!response.ok) {
             throw new Error("HTTP error " + response.status);
         }
         return response.json();
     })
-   .then(function(data) {
+  .then(function(data) {
         console.log(data);
     })
-   .catch(function(error) {
+  .catch(function(error) {
         console.error('Error:', error);
     });
 });

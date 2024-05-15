@@ -26,7 +26,6 @@ buttons.forEach(function(button) {
         newInput.style.outline  = 'none';
         newInput.style.fontSize  = '20px';
 
-        // Вставляем новый input в конец блока article_text
         articleText.appendChild(newInput);
         inputs.push(newInput); 
         newInput.focus();
@@ -137,9 +136,7 @@ document.getElementById('article_text').addEventListener('keydown', function(eve
             newParagraph.style.fontSize = "20px"
             articleText.appendChild(newParagraph);
         }
-        // Очищаем содержимое текущего input'а
         articleText.querySelector('input').value = '';
-        // Очищаем содержимое всех остальных input'ов
         inputs.forEach(function(input) {
             if (input!== articleText.querySelector('input')) {
                 input.value = '';
