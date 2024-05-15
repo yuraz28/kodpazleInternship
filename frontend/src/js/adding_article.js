@@ -9,10 +9,10 @@ document.getElementById('categoryButton').addEventListener('click', function() {
     }
 });
 
-// Создаем массив для хранения ссылок на input элементы
+//Массив для хранения ссылок на input элементы
 var inputs = [];
 
-// Создаем переменную для отслеживания текущего номера списка
+//Переменную для отслеживания текущего номера списка
 var listCounter = 1;
 
 var buttons = document.querySelectorAll('#categoryButtons button');
@@ -28,10 +28,9 @@ buttons.forEach(function(button) {
 
         // Вставляем новый input в конец блока article_text
         articleText.appendChild(newInput);
-        inputs.push(newInput); // Добавляем ссылку на новый input в массив
+        inputs.push(newInput); 
         newInput.focus();
         
-        // Ставим фокус на новом input'е
         var categoryButtons = document.getElementById('categoryButtons');
         categoryButtons.style.display = 'none';
         categoryButtons.classList.remove('fadeIn'); 
@@ -41,7 +40,6 @@ buttons.forEach(function(button) {
                 event.preventDefault();
                 var textContent = newInput.value.trim();
                 if (textContent === '') {
-                    // Если строка пустая, не создаем элемент и завершаем функцию
                     newInput.parentNode.removeChild(newInput);
                     return;
                 } else {    
@@ -68,13 +66,13 @@ buttons.forEach(function(button) {
                             articleText.appendChild(ol);
                         }
                         if (articleText.querySelectorAll('ol li').length === 0) {
-                            listCounter = 1; // Сбрасываем счетчик только если это первый элемент списка
+                            listCounter = 1;
                         }
                         newElement = document.createElement('li');
                         newElement.textContent = textContent;
                         newElement.style.fontSize = '18px';
                         ol.appendChild(newElement);
-                        listCounter++; // Увеличиваем счетчик списка
+                        listCounter++;
                     } else if (newInput.id === 'inputvideo') {
                         newElement = document.createElement('iframe');
                         newElement.src = textContent;
@@ -96,7 +94,6 @@ buttons.forEach(function(button) {
                         articleText.appendChild(newElement);
                     }
                 }
-                // Удаляем input после создания элемента
                 newInput.parentNode.removeChild(newInput);
             }
         });

@@ -2,20 +2,19 @@ document.getElementById('entrance').addEventListener('click', function() {
     var name = document.getElementById('login').value;
     var password = document.getElementById('password').value;
 
-    var data = {
-        login: name,
-        password: password
-    };
+    var params = new URLSearchParams();
+    params.append('login', name);
+    params.append('password', password);
 
-    var url = 'http://localhost:5143/api/user/authorization';
+    var url = 'http://localhost:5050/api/user/auth';
 
     fetch(url, {
         method: 'POST',
-        mode: 'no-cors', 
+        mode: 'no-cors',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: JSON.stringify(data)
+        body: params.toString()
     })
    .then(function(response) {
         if (!response.ok) {
