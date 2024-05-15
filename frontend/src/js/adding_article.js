@@ -9,12 +9,13 @@ document.getElementById('categoryButton').addEventListener('click', function() {
     }
 });
 
-//Массив для хранения ссылок на input элементы
+// Массив для хранения ссылок на input элементы
 var inputs = [];
 
-//Переменную для отслеживания текущего номера списка
+// Переменная для отслеживания текущего номера списка
 var listCounter = 1;
 
+// Обработчик для кнопок категорий
 var buttons = document.querySelectorAll('#categoryButtons button');
 buttons.forEach(function(button) {
     button.addEventListener('click', function() {
@@ -23,17 +24,16 @@ buttons.forEach(function(button) {
         newInput.type = 'text';
         newInput.id = 'input' + this.id;
         newInput.placeholder = this.textContent;
-        newInput.style.outline  = 'none';
-        newInput.style.fontSize  = '20px';
+        newInput.style.outline = 'none';
+        newInput.style.fontSize = '20px';
 
         articleText.appendChild(newInput);
-        inputs.push(newInput); 
+        inputs.push(newInput);
         newInput.focus();
-        
+
         var categoryButtons = document.getElementById('categoryButtons');
         categoryButtons.style.display = 'none';
-        categoryButtons.classList.remove('fadeIn'); 
-        
+        categoryButtons.classList.remove('fadeIn');
         newInput.addEventListener('keydown', function(event) {
             if (event.key === 'Enter') {
                 event.preventDefault();
@@ -41,54 +41,61 @@ buttons.forEach(function(button) {
                 if (textContent === '') {
                     newInput.parentNode.removeChild(newInput);
                     return;
-                } else {    
+                } else {
                     var newElement;
-                    if (newInput.id === 'inputh1') {
-                        newElement = document.createElement('h1');
-                        newElement.style.fontSize = '20px';
-                        newElement.style.fontWeight = '700';
-                    } else if (newInput.id === 'inputli') {
-                        newElement = document.createElement('li');
-                        newElement.textContent = textContent;
-                        newElement.style.fontSize = '18px';
-                        var ul = document.querySelector('.article_text ul');
-                        if (!ul) {
-                            ul = document.createElement('ul');
-                            ul.style.fontSize = '18px';
-                            articleText.appendChild(ul);
-                        }
-                        ul.appendChild(newElement);
-                    } else if (newInput.id === 'inputnumli') {
-                        var ol = document.querySelector('.article_text ol');
-                        if (!ol) {
-                            ol = document.createElement('ol');
-                            articleText.appendChild(ol);
-                        }
-                        if (articleText.querySelectorAll('ol li').length === 0) {
-                            listCounter = 1;
-                        }
-                        newElement = document.createElement('li');
-                        newElement.textContent = textContent;
-                        newElement.style.fontSize = '18px';
-                        ol.appendChild(newElement);
-                        listCounter++;
-                    } else if (newInput.id === 'inputvideo') {
-                        newElement = document.createElement('iframe');
-                        newElement.src = textContent;
-                        newElement.width = '800';
-                        newElement.height = '400';
-                        articleText.appendChild(newElement);
-                    } else if (newInput.id === 'inputphoto') {
+                    if (newInput.tagName.toLowerCase() === 'textarea') {
                         newElement = document.createElement('p');
                         newElement.textContent = textContent;
-                        newElement.style.fontSize = '18px'
-                        newElement.style.textAlign = 'center'
-                        articleText.appendChild(newElement);
-                        newInput.parentNode.removeChild(newInput);
-                    }else {
-                        newElement = document.createElement('p');
-                        newElement.textContent = textContent;
-                    }if (newInput.id !== 'inputli' && newInput.id !== 'inputnumli' && newInput.id !== 'inputvideo' && newInput.id !== 'inputphoto') {
+                    } else {
+                        // Логика для других типов input
+                        if (newInput.id === 'inputh1') {    
+                            newElement = document.createElement('h1');
+                            newElement.style.fontSize = '20px';
+                            newElement.style.fontWeight = '700';
+                        } else if (newInput.id === 'inputli') {
+                            newElement = document.createElement('li');
+                            newElement.textContent = textContent;
+                            newElement.style.fontSize = '18px';
+                            var ul = document.querySelector('.article_text ul');
+                            if (!ul) {
+                                ul = document.createElement('ul');
+                                ul.style.fontSize = '18px';
+                                articleText.appendChild(ul);
+                            }
+                            ul.appendChild(newElement);
+                        } else if (newInput.id === 'inputnumli') {
+                            var ol = document.querySelector('.article_text ol');
+                            if (!ol) {
+                                ol = document.createElement('ol');
+                                articleText.appendChild(ol);
+                            }
+                            if (articleText.querySelectorAll('ol li').length === 0) {
+                                listCounter = 1;
+                            }
+                            newElement = document.createElement('li');
+                            newElement.textContent = textContent;
+                            newElement.style.fontSize = '18px';
+                            ol.appendChild(newElement);
+                            listCounter++;
+                        } else if (newInput.id === 'inputvideo') {
+                            newElement = document.createElement('iframe');
+                            newElement.src = textContent;
+                            newElement.width = '800';
+                            newElement.height = '400';
+                            articleText.appendChild(newElement);
+                        } else if (newInput.id === 'inputphoto') {
+                            newElement = document.createElement('p');
+                            newElement.textContent = textContent;
+                            newElement.style.fontSize = '18px';
+                            newElement.style.textAlign = 'center';
+                            articleText.appendChild(newElement);
+                            newInput.parentNode.removeChild(newInput);
+                        } else {
+                            newElement = document.createElement('p');
+                            newElement.textContent = textContent;
+                        }
+                    }
+                    if (newInput.id!== 'inputli' && newInput.id!== 'inputnumli' && newInput.id!== 'inputvideo' && newInput.id!== 'inputphoto') {
                         newElement.textContent = textContent;
                         articleText.appendChild(newElement);
                     }
@@ -99,6 +106,7 @@ buttons.forEach(function(button) {
     });
 });
 
+// Обработчик для добавления изображений
 document.getElementById('photo').addEventListener('click', function() {
     var fileInput = document.createElement('input');
     fileInput.type = 'file';
@@ -117,30 +125,6 @@ document.getElementById('photo').addEventListener('click', function() {
             };
             reader.readAsDataURL(file);
         }
-    });     
+    });
     fileInput.click();
-});
-
-// Обновляем логику добавления нового абзаца при нажатии Enter
-document.getElementById('article_text').addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-        event.preventDefault();
-        var articleText = document.querySelector('.article_text');
-        var textContent = articleText.querySelector('input').value;
-        if (textContent.trim() === '') {
-            var newLine = document.createElement('br');
-            articleText.appendChild(newLine);
-        } else {    
-            var newParagraph = document.createElement('p');
-            newParagraph.textContent = textContent;
-            newParagraph.style.fontSize = "20px"
-            articleText.appendChild(newParagraph);
-        }
-        articleText.querySelector('input').value = '';
-        inputs.forEach(function(input) {
-            if (input!== articleText.querySelector('input')) {
-                input.value = '';
-            }
-        });
-    }
 });

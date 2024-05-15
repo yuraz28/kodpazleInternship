@@ -29,17 +29,19 @@
         </div>
     </header>
     <div class="telo">
-        <h1>UX/UI</h1>
+        <h1>UI/UX</h1>
         <div class="create-line"></div>
         <div style="display: flex;">
-            <p>Все подряд</p>
-            <div style="margin-top: 1%; margin-left: 8px;">
-                <svg width="16" height="9" viewBox="0 0 16 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8.70711 0.292793C8.31658 -0.097731 7.68342 -0.097731 7.29289 0.292793L0.928933 6.65675C0.538409 7.04728 0.538409 7.68044 0.928933 8.07097C1.31946 8.46149 1.95262 8.46149 2.34315 8.07097L8 2.41411L13.6569 8.07097C14.0474 8.46149 14.6805 8.46149 15.0711 8.07097C15.4616 7.68044 15.4616 7.04728 15.0711 6.65675L8.70711 0.292793ZM9 1V0.9999L7 0.9999V1L9 1Z" fill="black"/>
+            <div style="margin-top: 1%;">
+                <button id="filter_button">
+                    Все подряд
+                    <svg class="rotate-svg" width="16" height="9" viewBox="0 0 16 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.70711 0.292793C8.31658 -0.097731 7.68342 -0.097731 7.29289 0.292793L0.928933 6.65675C0.538409 7.04728 0.538409 7.68044 0.928933 8.07097C1.31946 8.46149 1.95262 8.46149 2.34315 8.07097L8 2.41411L13.6569 8.07097C14.0474 8.46149 14.6805 8.46149 15.0711 8.07097C15.4616 7.68044 15.4616 7.04728 15.0711 6.65675L8.70711 0.292793ZM9 1V0.9999L7 0.9999V1L9 1Z" fill="black"/>
                     </svg>  
+                </button>
             </div>
         </div>
-        <div class="menu">
+        <div style="display: none;" id="menu_list_filter" class="menu-list-filter">
             <p>Сначала показывать:</p>
             <div style="display: flex;">
                 <button class="acivate_button">Новые</button>

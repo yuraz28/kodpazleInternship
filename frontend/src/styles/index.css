@@ -90,8 +90,8 @@ button{
 .telo{
     margin-top: 20px;
     margin-bottom: 10px;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 18%;
+    margin-right: 18%;
 }
 
 h1{
@@ -107,7 +107,6 @@ h1{
 }
 
 .telo p{
-    margin-top: 1%;
     font-family: Manrope;
     font-size: 18px;
     font-weight: 300;
@@ -157,7 +156,6 @@ h1{
     background: #4094F7;
     transform: scale(1.1)   ;   
 }
-
 .filter{
     margin-top: 1%;
     margin-right: 1%;
@@ -181,6 +179,90 @@ h1{
     border: none;
     font-size: 18px;
 }
-.menu{
-    transition: all 0.5s ease-in-out;
+@keyframes slideFadeInOut{
+    0% {
+        opacity: 0;
+        transform: translateY(-20%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-20%);
+    }
+}
+.menu-list-filter{
+    animation-name: slideFadeInOut;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+.menu-list-filter-to{
+    animation-name: fadeOut;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+.rotate-svg {
+    transition: transform 0.3s ease;
+}
+.rotate-svg.rotated {
+    transform: rotate(180deg);
+}
+.std-flex{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+}
+.std-flex p{
+    font-size: 20px;
+    font-weight: 700;
+}
+.button-std button{
+    background: #4094F7;
+    border: none;
+    height: 40px;
+    width: 160px;
+    font-size: 18px;
+    border-radius: 5px;
+    color: white;
+}
+.add{
+    display: flex;
+    justify-content: space-between;
+}
+.body_std_modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+.body_std_modal.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal_std_lsit div{
+    display: flex;
+    flex-direction: column;
+}
+.modal_std_lsit input{
+    height: 30px;
+    width: 220px;
+}
+.modal_std{
+    background: white;
+    padding: 50px;
 }
