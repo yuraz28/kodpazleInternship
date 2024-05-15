@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;   
 
@@ -6,12 +7,12 @@ using System.Collections.Generic;
 public class ManagerContorller : ControllerBase
 {
     private readonly IManagerRepository _manager;
-    private readonly IUserRepository _userRepository;
+    //private readonly IUserRepository _userRepository;
 
-    public ManagerContorller(IManagerRepository managerRepository, IUserRepository userRepository)
+    public ManagerContorller(IManagerRepository managerRepository)
     {
         _manager = managerRepository;
-        _userRepository = userRepository;
+        //_userRepository = userRepository;
     }
 
     [HttpPost("/api/manager/addmaterial")]
@@ -64,18 +65,28 @@ public class ManagerContorller : ControllerBase
     [HttpPost("/api/user/register")]
     public IActionResult Register([FromBody] User user)
     {
-        _userRepository.AddUser(user);
+        _manager.AddUser(user);
         return Ok();
     }
 
     [HttpDelete("/api/user/delete")]
     public IActionResult DeleteUser(int IdUser)
     {
-        var flag = _userRepository.DeleteUser(IdUser);
-        if (flag)
-        {
-            return Ok();
-        }
+        _manager.DeleteUser(IdUser);
+        return Ok();
+    }
+
+    [HttpPost("/api/user/auth")]
+    public IActionResult Auth([FromBody] UserK u)
+    {
+        User user = _manager.GetUser(u.Login, u.Password);
+        if (_manager.AuthUser(user)) return Ok();
         return NotFound();
+    }
+
+    public class UserK
+    {
+        public string? Login { get; set; }
+        public string? Password { get; set; }
     }
 }

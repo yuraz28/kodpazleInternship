@@ -39,16 +39,16 @@ builder.Services.AddSwaggerGen();
 // builder.Services.AddIdentityApiEndpoints<IdentityUser>()
 //     .AddEntityFrameworkStores<AccountDbContext>();
 
-builder.Services.AddSingleton<IUserRepository>(provider =>
-{
-    var optionsBuilder = new DbContextOptionsBuilder<LibraryContext>();
-    optionsBuilder.UseSqlite("Data Source=LibraryDataBase.db"); 
-    var libraryContext = new LibraryContext(optionsBuilder.Options);
-    libraryContext.Database.EnsureCreated(); 
-    IUserRepository userRepository = new UserRepository(libraryContext);
+// builder.Services.AddSingleton<IUserRepository>(provider =>
+// {
+//     var optionsBuilder = new DbContextOptionsBuilder<LibraryContext>();
+//     optionsBuilder.UseSqlite("Data Source=LibraryDataBase.db"); 
+//     var libraryContext = new LibraryContext(optionsBuilder.Options);
+//     libraryContext.Database.EnsureCreated(); 
+//     IUserRepository userRepository = new UserRepository(libraryContext);
 
-    return userRepository;
-});
+//     return userRepository;
+// });
 
 builder.Services.AddSingleton<IMaterialRepository>(provider =>
 {
