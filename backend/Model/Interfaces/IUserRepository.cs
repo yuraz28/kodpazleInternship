@@ -1,8 +1,8 @@
 public interface IUserRepository
 {
-    void AddUser(User user);
-    void DeleteUser(int id);
-    List<User> GetAllUsers();
-    User GetUser(int id);
-    bool VerifyUser(User user);
+    void Add(User user);
+    void Delete(int id);
+    List<User> GetAll();
+    User Get(int id);
+    bool Authorization(string login, string password);
 } 

@@ -7,7 +7,7 @@
         _context = user;
     }
 
-    public void AddUser(User user)
+    public void Add(User user)
     {
         if(_context.Users.Any(u => u.Email == user.Email))
         {
@@ -33,25 +33,25 @@
         }
     }
 
-    public void DeleteUser(int id)
+    public void Delete(int id)
     {
         _context.Users.Where(t => t.ID == id).ToList().ForEach(t => _context.Users.Remove(t));
         _context.SaveChanges();
     }
 
-    public List<User> GetAllUsers()
+    public List<User> GetAll()
     {
         return _context.Users.ToList();
     }
 
-    public User GetUser(int id)
+    public User Get(int id)
     {
         return _context.Users.FirstOrDefault(t => t.ID == id);
     }
 
-    public bool VerifyUser(User user)
+    public bool Authorization(string login, string password)
     {
-        User verify_context = _context.Users.FirstOrDefault(u => u.Login == user.Login && u.Password == user.Password);
+        User verify_context = _context.Users.FirstOrDefault(u => u.Login == login && u.Password == password);
         if(verify_context != null)
         {
             Console.WriteLine("Account verified.");

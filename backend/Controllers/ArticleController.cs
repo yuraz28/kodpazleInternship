@@ -12,6 +12,12 @@ public class ArticleContorller : ControllerBase
         _context = articleRepository;
     }
 
+    [HttpGet("/api/manager/getallmaterial")]
+    public IEnumerable<Article> GetMaterials()
+    {
+        return _context.GetAll();
+    }
+
     [HttpPost("/api/manager/addmaterial")]
     public IActionResult Add([FromBody] Article article)
     {
@@ -26,17 +32,11 @@ public class ArticleContorller : ControllerBase
         return Ok();
     }
 
-    [HttpPost("/api/manager/editematerial")]
+    [HttpPut("/api/manager/editematerial")]
     public IActionResult EditMaterial([FromBody] EditArticle article)
     {
         _context.EditArticle(article);
         return Ok();
-    }
-
-    [HttpGet("/api/manager/getallmaterial")]
-    public IEnumerable<Article> GetMaterials()
-    {
-        return _context.GetAll();
     }
 
     [HttpGet("/api/manager/getallfavorites")]
@@ -65,7 +65,7 @@ public class ArticleContorller : ControllerBase
         return _context.GetAllRates();
     }
 
-    [HttpPut("/api/manager/rate")]
+    [HttpPost("/api/manager/rate")]
     public IActionResult AddRate([FromBody] Rate Rate)
     {
         _context.AddRate(Rate);
