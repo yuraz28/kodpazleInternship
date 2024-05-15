@@ -1,0 +1,149 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    font-family: "Monrope";
+    font-weight: 400;
+}
+
+.header-logo{
+    display: flex;
+    background-color: #191919;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-logo-p{
+    width: 1200px;
+}
+
+.header-logo-p p {
+    font-family: Inria Sans;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 15px;
+    color: #FFFFFF;
+}
+
+.nav{
+    display: flex;  
+    height: 60px;
+    align-items: center;
+    background-color: #fff;
+    justify-content: center;
+    filter: drop-shadow(0px 3px  4px #0000003f);
+}
+
+.nav-back{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    width: 1150px;
+}
+
+#button-back{
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 0px;
+}
+
+.nav-back p{
+    color: #505050;
+
+    font-family: Manrope;
+    font-size: 18px;
+    font-weight: 100;
+    line-height: 15px;
+    text-align: center;
+}
+
+.telo{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+h1{
+    font-family: Open Sans;
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.create-line {
+    width: 100%;
+    border-top: 1px solid #000000;
+    margin-top: 3px;
+}
+
+.telo p{
+    margin-top: 1%;
+    font-family: Manrope;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 15px;
+}
+
+.info{
+    background-color: #000000;
+    margin-left: 12%;
+    margin-right: 12%;
+}
+
+.acivate_button{
+    margin-top: 1%;
+    margin-right: 1%;
+    background: #4094F7;
+    width: 80px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+
+    font-family: Manrope;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 15px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.deactivate_button{
+    margin-top: 1%;
+    margin-right: 1%;
+    width: 80px;
+    height: 40px;
+    border-radius: 5px;
+    background: none;
+    border: 2px solid #4094F7;
+
+    font-family: Manrope;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 15px;
+    text-align: center;
+}
+
+.filter{
+    margin-top: 1%;
+    margin-right: 1%;
+    background: #4094F7;
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+
+    font-family: Manrope;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 15px;
+    text-align: center;
+    color: #FFFFFF;
+}
