@@ -1,4 +1,6 @@
-﻿public class ArticleRepository : IArticleRepository
+﻿using Microsoft.EntityFrameworkCore;
+
+public class ArticleRepository : IArticleRepository
 {
     private readonly LibraryContext _context;
 
@@ -7,45 +9,49 @@
         _context = context;
     }
 
-    public void Add(Article material)
+    public async Task Add(Article material)
     {
-        _context.Articles.Add(material);
-        _context.SaveChanges();
+        await _context.Articles.AddAsync(material);
+        _context.SaveChangesAsync();
     }
 
-    public void Delete(int id)
+    public async Task Delete(int id)
     {
-        _context.Articles.Where(t => t.ID == id).ToList().ForEach(t => _context.Articles.Remove(t));
-        _context.SaveChanges();
+        _context.Users.Remove(await _context.Users.SingleOrDefaultAsync(x => x.ID == id));
+        _context.SaveChangesAsync();
     }
 
-    public List<Article> GetAll()
+    public async Task<List<Article>> GetAll()
     {
-        return _context.Articles.ToList();
+        var articles = await _context.Articles.ToListAsync();
+        return articles;
     }
 
-    public Article Get(int id)
+    public async Task<Article> Get(int id)
     {
-        return _context.Articles.FirstOrDefault(t => t.ID == id);
+        var article = await _context.Articles.FirstOrDefaultAsync(t => t.ID == id);
+        return article;
     }
 
-    public List<Favorite> GetAllFavorite(int userId)
+    public async Task<List<Favorite>> GetAllFavorite(int userId)
     {
-        return _context.Favorites.ToList();
+        var favorites = await _context.Favorites.ToListAsync();
+        return favorites;
     }
 
-    public void AddFavorite(Favorite favorite)
+    public async Task AddFavorite(Favorite favorite)
     {
-            _context.Add(favorite);
+            await _context.AddAsync(favorite);
+            _context.SaveChangesAsync();
     }
 
-    public void DeleteFavorite(int materialid, int userId)
+    public async Task DeleteFavorite(int materialid, int userId)
     {
-        _context.Favorites.Where(t => t.MaterialId == materialid && t.UserID == userId).ToList().ForEach(t => _context.Favorites.Remove(t));
-        _context.SaveChanges();
+        _context.Favorites.Remove(await _context.Favorites.SingleOrDefaultAsync(x => x.UserID == userId && x.MaterialId == materialid));
+        _context.SaveChangesAsync();
     }
 
-    public void EditArticle(EditArticle material)
+    public async Task EditArticle(EditArticle material)
     {
             var entity = _context.Articles.FirstOrDefault(item => item.ID == material.ID);
 
@@ -53,24 +59,26 @@
             {
                 if (material.Name != null) entity.Name = material.Name;
                 if (material.Information != null) entity.Information = material.Information;
-                if (material.UrlImage != null) entity.UrlImage = material.UrlImage;
-                _context.SaveChanges();
+                // if (material.UrlImage != null) entity.UrlImage = material.UrlImage;
+                _context.SaveChangesAsync();
             }
     }
 
-    public void AddRate(Rate rateMail)
+    public async Task AddRate(Rate rateMail)
     {
-        _context.Rates.Add(rateMail);
+        await _context.Rates.AddAsync(rateMail);
+        _context.SaveChangesAsync();
     }
 
-    public void DeleteRate(int rateMail, int userId)
+    public async Task DeleteRate(int articleId, int userId)
     {
-        _context.Rates.Where(t => t.ArticleID == rateMail && t.UserID == userId).ToList().ForEach(t => _context.Rates.Remove(t));
-        _context.SaveChanges(); 
+        _context.Rates.Remove(await _context.Rates.SingleOrDefaultAsync(x => x.UserID == userId && x.ArticleID == articleId));
+        _context.SaveChangesAsync();
     }
 
-    public List<Rate> GetAllRates()
+    public async Task<List<Rate>> GetAllRates()
     {
-        return _context.Rates.ToList();
+        var rates = await _context.Rates.ToListAsync();
+        return rates;
     }
 }

@@ -5,37 +5,39 @@ using System.Collections.Generic;
 
 public class UserController : ControllerBase
 {
-    private readonly IUserRepository _context;
+    private readonly IUserRepository _user;
 
-    public UserController(IUserRepository context)
+    public UserController(IUserRepository user)
     {
-        _context = context;
+        _user = user;
     }
 
-    [HttpGet("/api/user/getall")]
-    public IEnumerable<User> GetAll()
+    [HttpGet("/api/user")]
+    public async Task<IEnumerable<User>> GetAll()
     {
-        return _context.GetAll();
+        var users = await _user.GetAll();
+        return users;
     }
 
-    [HttpPost("/api/user/add")]
-    public IActionResult Add([FromBody] User user)
+    [HttpPost("/api/user")]
+    public async Task<IActionResult> Add([FromBody] User user)
     {
-        _context.Add(user);
+        _user.Add(user);
         return Ok();
     }
 
-    [HttpDelete("/api/user/delete")]
-    public IActionResult Delete([FromBody] int id)
+    [HttpDelete("/api/user")]
+    public async Task<IActionResult> Delete([FromBody] int id)
     {
-        _context.Delete(id);
+        _user.Delete(id);
         return Ok();
     }
 
-    [HttpPost("/api/user/authorization")]
-    public IActionResult Authorization(string login, string password)
+    [HttpPost("/api/authorization")]
+    public async Task<IActionResult> Authorization(string login, string password)
     {
-        if (_context.Authorization(login, password)) return Ok("Авторизировани");
+        var flag = await _user.Authorization(login, password);
+        if (flag) return Ok("Авторизировани");
         return BadRequest("Не авторизировани");
     }
 }

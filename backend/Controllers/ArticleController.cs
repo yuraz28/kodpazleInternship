@@ -5,77 +5,80 @@ using System.Collections.Generic;
 
 public class ArticleContorller : ControllerBase
 {
-    private readonly IArticleRepository _context;
+    private readonly IArticleRepository _article;
 
-    public ArticleContorller(IArticleRepository articleRepository)
+    public ArticleContorller(IArticleRepository article)
     {
-        _context = articleRepository;
+        _article = article;
     }
 
-    [HttpGet("/api/manager/getallmaterial")]
-    public IEnumerable<Article> GetMaterials()
+    [HttpGet("/api/article")]
+    public async Task<IEnumerable<Article>> GetAll()
     {
-        return _context.GetAll();
+        var articles = await _article.GetAll();
+        return articles;
     }
 
-    [HttpPost("/api/manager/addmaterial")]
-    public IActionResult Add([FromBody] Article article)
+    [HttpPost("/api/article")]
+    public async Task<IActionResult> Add([FromBody] Article article)
     {
-        _context.Add(article);
+        _article.Add(article);
         return Ok();
     }
 
-    [HttpDelete("/api/manager/deletematerial")]
-    public IActionResult DeleteMaterial([FromBody] int articleId)
+    [HttpDelete("/api/article")]
+    public async Task<IActionResult> Delete([FromBody] int articleId)
     {
-        _context.Delete(articleId);
+        await _article.Delete(articleId);
         return Ok();
     }
 
-    [HttpPut("/api/manager/editematerial")]
-    public IActionResult EditMaterial([FromBody] EditArticle article)
+    [HttpPut("/api/article")]
+    public async Task<IActionResult> Edit([FromBody] EditArticle article)
     {
-        _context.EditArticle(article);
+        await _article.EditArticle(article);
         return Ok();
     }
 
-    [HttpGet("/api/manager/getallfavorites")]
-    public IEnumerable<Favorite> GetAllFavorite(int userId)
+    [HttpGet("/api/favorites")]
+    public async Task<IEnumerable<Favorite>> GetAllFavorite(int userId)
     {
-        return _context.GetAllFavorite(userId);
+        var favorite = await _article.GetAllFavorite(userId);
+        return favorite;
     }
 
-    [HttpPost("/api/manager/addfavorite")]
-    public IActionResult AddFavorite([FromBody] Favorite favorite)
+    [HttpPost("/api/favorites")]
+    public async Task<IActionResult> AddFavorite([FromBody] Favorite favorite)
     {
-        _context.AddFavorite(favorite);
+        await _article.AddFavorite(favorite);
         return Ok();
     }
 
-    [HttpDelete("/api/manager/deletefavorite")]
-    public IActionResult DeleteFavorite(int materialId, int userId)
+    [HttpDelete("/api/favorites")]
+    public async Task<IActionResult> DeleteFavorite(int materialId, int userId)
     {
-        _context.DeleteFavorite(materialId, userId);
+        await _article.DeleteFavorite(materialId, userId);
         return Ok();
     }
 
-    [HttpGet("/api/manager/getallrate")]
-    public IEnumerable<Rate> GetAllReat()
+    [HttpGet("/api/rate")]
+    public async Task<IEnumerable<Rate>> GetAllReat()
     {
-        return _context.GetAllRates();
+        var rate = await _article.GetAllRates();
+        return rate;
     }
 
-    [HttpPost("/api/manager/rate")]
-    public IActionResult AddRate([FromBody] Rate Rate)
+    [HttpPost("/api/rate")]
+    public async Task<IActionResult> AddRate([FromBody] Rate Rate)
     {
-        _context.AddRate(Rate);
+        await _article.AddRate(Rate);
         return Ok();
     }
 
-    [HttpDelete("/api/manager/deleterate")]
-    public IActionResult DeleteRate(int RateId, int UserId)
+    [HttpDelete("/api/rate")]
+    public async Task<IActionResult> DeleteRate(int articleId, int UserId)
     {
-        _context.DeleteRate(RateId, UserId);
+        await _article.DeleteRate(articleId, UserId);
         return Ok();
     }
 }

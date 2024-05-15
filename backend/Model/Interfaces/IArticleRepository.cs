@@ -1,14 +1,14 @@
 ﻿public interface IArticleRepository
 {
-    void Add(Article material);
-    void Delete(int id);
-    List<Article> GetAll();
-    Article Get(int id);
-    List<Favorite> GetAllFavorite(int userId);
-    void AddFavorite(Favorite favorite);
-    void DeleteFavorite(int materialid, int userId);
-    void EditArticle(EditArticle material);
-    void AddRate(Rate rateMail);
-    void DeleteRate(int rateMail, int userId);
-    public List<Rate> GetAllRates();
+    Task Add(Article material);
+    Task Delete(int id);
+    Task<List<Article>> GetAll();
+    Task<Article> Get(int id);
+    Task<List<Favorite>> GetAllFavorite(int userId);
+    Task AddFavorite(Favorite favorite);
+    Task DeleteFavorite(int materialid, int userId);
+    Task EditArticle(EditArticle material);
+    Task AddRate(Rate rateMail);
+    Task DeleteRate(int articleId, int userId);
+    public Task<List<Rate>> GetAllRates();
 }
