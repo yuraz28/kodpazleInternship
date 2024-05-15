@@ -1,4 +1,6 @@
-﻿public class ManagerRepository : IManagerRepository
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+
+public class ManagerRepository : IManagerRepository
 {
     private readonly LibraryContext _context;
 
@@ -36,12 +38,6 @@
         // }
     }
 
-    // public void DeleteUser(int id)
-    // {
-    //     _context.Users.Where(t => t.ID == id).ToList().ForEach(t => _context.Users.Remove(t));
-    //     _context.SaveChanges();
-    // }
-
     public bool DeleteUser(int id)
     {
         var u = _context.Users.FirstOrDefault(t => t.ID == id);
@@ -56,9 +52,11 @@
 
     }
 
+    
+
     public List<User> GetAllUsers()
     {
-        return _context.Users.ToList();
+        return _context.Users.Where(t => t.Role == "Участник").ToList();
     }
 
     public User GetUser(int id)
@@ -66,9 +64,9 @@
         return _context.Users.FirstOrDefault(t => t.ID == id);
     }
 
-    public User GetUser(string login, string password)
+    public User GetUser(string login)
     {
-        return _context.Users.FirstOrDefault(t => t.Name == login && t.Password == password);
+        return _context.Users.FirstOrDefault(t => t.Name == login);
     }
 
     public void AddMaterial(Material material)
@@ -126,18 +124,42 @@
         _context.Rates.Add(rateMail);
     }
 
-    public bool AuthUser(User user)
+public string AuthUser(User user, string pass)
+{
+    if (user == null || string.IsNullOrEmpty(user.Name))
     {
-        User verify_user = _context.Users.FirstOrDefault(u => u.Name == user.Name && u.Password == user.Password);
-        if(verify_user != null)
+        //Console.WriteLine("User object is null or username is empty.");
+        return "User null";
+    }
+
+    User foundUser = _context.Users.FirstOrDefault(u => u.Name == user.Name);
+    if(foundUser != null)
+    {
+        if (user.Password != pass)
         {
-            Console.WriteLine("Account verified.");
-            return true;    
+            //Console.WriteLine("Account not verified due to incorrect password.");
+            return "Неверный пароль";
+        }
+        if (user.Name == foundUser.Name && user.Password == pass)
+        {
+            //Console.WriteLine("Account verified.");
+            return "Пользователь авторизован";    
         }
         else 
         {
-            Console.WriteLine("Account not verified."); 
-            return false; 
-        }  
+            return "";
+        }
     }
+    else 
+    {
+        //Console.WriteLine("Account not verified because user does not exist.");
+        return "Пользователь не найден"; 
+    }  
+  }
+
+  public string GetRole(string login)
+  {
+    return _context.Users.FirstOrDefault(t => t.Name == login).Role;
+  }
+
 }

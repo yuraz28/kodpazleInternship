@@ -11,6 +11,7 @@
     void AddFavoriteMaterial(int materialId, int userId);
     void EditMaterial(EditMaterial material);
     void AddRate(Rate rateMail);
-    bool AuthUser(User user);
-    public User GetUser(string login, string password);
+    string AuthUser(User user, string pass);
+    public User GetUser(string login);
+    string GetRole(string login);
 }

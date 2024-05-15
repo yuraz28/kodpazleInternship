@@ -1,72 +1,35 @@
-// var builder = WebApplication.CreateBuilder(args);
-
-// builder.Services.AddControllers();
-
-// builder.Services.AddEndpointsApiExplorer();
-// builder.Services.AddSwaggerGen();
-
-// var app = builder.Build();
-
-// // Configure the HTTP request pipeline.
-// if (app.Environment.IsDevelopment())
-// {
-//     app.UseSwagger();
-//     app.UseSwaggerUI();
-// }
-
-// app.UseHttpsRedirection();
-// app.UseAuthorization();
-
-// app.MapControllers();
-// // app.MapIdentityApi<IdentityUser>();
-// // app.UseAuthorization();
-// // app.UseAuthentication();
-
-// app.Run();
-
 using Microsoft.AspNetCore.Authorization;
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-// builder.Services.AddIdentityApiEndpoints<IdentityUser>()
-//     .AddEntityFrameworkStores<AccountDbContext>();
 
-// builder.Services.AddSingleton<IUserRepository>(provider =>
+// Enable CORS for specific origins
+// builder.Services.AddCors(options =>
 // {
-//     var optionsBuilder = new DbContextOptionsBuilder<LibraryContext>();
-//     optionsBuilder.UseSqlite("Data Source=LibraryDataBase.db"); 
-//     var libraryContext = new LibraryContext(optionsBuilder.Options);
-//     libraryContext.Database.EnsureCreated(); 
-//     IUserRepository userRepository = new UserRepository(libraryContext);
-
-//     return userRepository;
+//     options.AddDefaultPolicy(builder =>
+//     {
+//         builder.WithOrigins("http://192.168.161.33:5050") // Allow your frontend origin
+//               .AllowAnyHeader()
+//               .AllowAnyMethod();
+//     });
 // });
 
+builder.Services.AddCors(options => 
+    { 
+        options.AddPolicy("AllowSpecificOrigin", 
+            builder => builder.WithOrigins("http://127.0.0.1:5500") 
+                            .AllowAnyHeader() 
+                            .AllowAnyMethod()); 
+    }); 
 
-// Другие настройки...
-
-builder.Services.AddCors(options =>
-{
-    options.AddDefaultPolicy(
-        builder => builder.WithOrigins("http://localhost:3000") // Замените на адрес вашего фронтенд-приложения
-                        .AllowAnyHeader()
-                        .AllowAnyMethod());
-});
-
-
-// Настройка CORS
-
-
-// Остальная часть конфигурации...
-
+// Your existing service registrations
 builder.Services.AddSingleton<IMaterialRepository>(provider =>
 {
     var optionsBuilder = new DbContextOptionsBuilder<LibraryContext>();
@@ -84,12 +47,10 @@ builder.Services.AddSingleton<IManagerRepository>(provider =>
     optionsBuilder.UseSqlite("Data Source=LibraryDataBase.db"); 
     var libraryContext = new LibraryContext(optionsBuilder.Options);
     libraryContext.Database.EnsureCreated(); 
-    IManagerRepository materialRepository = new ManagerRepository(libraryContext);
+    IManagerRepository managerRepository = new ManagerRepository(libraryContext);
 
-    return materialRepository;
+    return managerRepository;
 });
-
-
 
 var app = builder.Build();
 
@@ -101,12 +62,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
-app.UseCors();
-
+app.UseCors("AllowSpecificOrigin");
 app.MapControllers();
-// app.MapIdentityApi<IdentityUser>();
 
 app.Run();
