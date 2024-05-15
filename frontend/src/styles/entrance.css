@@ -1,16 +1,24 @@
+@font-face {
+    font-family: "Manrope";
+    src: url(/frontend/src/fonts/Manrope-Regular.woff2);
+    font-weight: 400;
+}
+@font-face {
+    font-family: "Manrope";
+    src: url(/frontend/src/fonts/Manrope-Bold.woff2);
+    font-weight: 700;
+}
 body{
     background: #E5E3E3;
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
-
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
-
 .block{
     background: white;
     width: 750px;
@@ -18,7 +26,6 @@ body{
     gap: 0px;
     border-radius: 10px;
     opacity: 0px;
-
     box-shadow: 0px 55px 30px 20px #00000033;
 }
 button{
@@ -31,10 +38,7 @@ button{
     background: #4094F7;
     border: none;
     cursor: pointer;
-
-    font-size: 17px;
-    /* line-height: 27.32px;
-    letter-spacing: -0.04em; */
+    font-size: 18px;
     text-align: center;
     color: white;
     transition: 0.2s ease-in;
@@ -53,13 +57,14 @@ button:hover{
     flex-direction: column;
     margin-bottom: 20px;
     margin-top: 3%;
+    font-size: 20px;
 }
 .oneinput label {
     margin-left: -80%;
     text-align: start;
     margin-bottom: 5px;
 
-    font-family: Manrope;
+    font-family: "Manrope";
     font-size: 20px;
     font-weight: 10;
     line-height: 15px;
