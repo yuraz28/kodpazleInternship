@@ -7,7 +7,7 @@ document.getElementById('entrance').addEventListener('click', function() {
         password: password
     };
 
-    var url = 'http://localhost:5200/api/user/authorization';
+    var url = 'http://localhost:5143/api/user/authorization';
 
     fetch(url, {
         method: 'POST',
