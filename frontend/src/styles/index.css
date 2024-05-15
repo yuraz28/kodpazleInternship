@@ -1,13 +1,29 @@
+@font-face {
+    font-family: "Manrope";
+    src: url(/frontend/src/fonts/Manrope-Regular.woff2);
+    font-weight: 400;
+}
+@font-face {
+    font-family: "Manrope";
+    src: url(/frontend/src/fonts/Manrope-Bold.woff2);
+    font-weight: 700;
+}
+@font-face {
+    font-family: "InriaSans";
+    src: url(/frontend/src/fonts/InriaSans-Bold.woff2);
+    font-weight: 700;
+}
 *{
     margin: 0;
     padding: 0;
-}
-
+}   
 header{
     font-family: "Monrope";
     font-weight: 400;
 }
-
+button{
+    cursor: pointer;
+}
 .header-logo{
     display: flex;
     background-color: #191919;
@@ -21,7 +37,7 @@ header{
 }
 
 .header-logo-p p {
-    font-family: Inria Sans;
+    font-family: "InriaSans";
     font-size: 28px;
     font-weight: 400;
     line-height: 15px;
@@ -55,14 +71,20 @@ header{
     padding: 0px;
 }
 
-.nav-back p{
+.nav-back a{
     color: #505050;
 
-    font-family: Manrope;
+    font-family: "Manrope";
     font-size: 18px;
     font-weight: 100;
     line-height: 15px;
     text-align: center;
+    transition: 0.2s ease-in;
+    text-decoration: none;
+}
+
+.nav-back a:hover {
+    transform: scale(1.1);
 }
 
 .telo{
@@ -73,9 +95,9 @@ header{
 }
 
 h1{
-    font-family: Open Sans;
+    font-family: "Manrope";
     font-size: 28px;
-    font-weight: 500;
+    font-weight: 700;
 }
 
 .create-line {
@@ -113,8 +135,8 @@ h1{
     line-height: 15px;
     text-align: center;
     color: #FFFFFF;
+    transition: 0.2s ease-in;
 }
-
 .deactivate_button{
     margin-top: 1%;
     margin-right: 1%;
@@ -129,6 +151,11 @@ h1{
     font-weight: 400;
     line-height: 15px;
     text-align: center;
+    transition: 0.2s ease-in;
+}
+.deactivate_button:hover, .acivate_button:hover, .filter:hover{
+    background: #4094F7;
+    transform: scale(1.1)   ;   
 }
 
 .filter{
@@ -146,4 +173,11 @@ h1{
     line-height: 15px;
     text-align: center;
     color: #FFFFFF;
+
+    transition: 0.2s ease-in;
+}
+#filter_button{
+    background: none;
+    border: none;
+    font-size: 18px;
 }
