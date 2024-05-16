@@ -4,7 +4,7 @@ public class Article
     public int IdAuthor { get; set; }
     public string? Name {get; set;}
     public string? Information { get; set; }
-    // public string? UrlImage { get; set; }
+    // public double? Rateing { get; set; }
     // public int? TimeToLearn { get; set; }
 
     // public Article(int id, int idAuthor, string name, string information,)

@@ -1,7 +1,7 @@
 ﻿public interface IArticleRepository
 {
     Task Add(Article material);
-    Task Delete(int id);
+    Task<bool> Delete(int id);
     Task<List<Article>> GetAll();
     Task<Article> Get(int id);
     Task<List<Favorite>> GetAllFavorite(int userId);

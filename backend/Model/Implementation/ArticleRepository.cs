@@ -15,10 +15,15 @@ public class ArticleRepository : IArticleRepository
         _context.SaveChangesAsync();
     }
 
-    public async Task Delete(int id)
+    public async Task<bool> Delete(int id)
     {
-        _context.Users.Remove(await _context.Users.SingleOrDefaultAsync(x => x.ID == id));
-        _context.SaveChangesAsync();
+        if (await _context.Articles.FirstOrDefaultAsync(x => x.ID == id) != null)
+        {
+            _context.Articles.Remove(await _context.Articles.SingleOrDefaultAsync(x => x.ID == id));
+            _context.SaveChangesAsync();
+            return true;
+        }
+        return false;
     }
 
     public async Task<List<Article>> GetAll()
@@ -41,7 +46,7 @@ public class ArticleRepository : IArticleRepository
 
     public async Task AddFavorite(Favorite favorite)
     {
-            await _context.AddAsync(favorite);
+            await _context.Favorites.AddAsync(favorite);
             _context.SaveChangesAsync();
     }
 
@@ -68,6 +73,9 @@ public class ArticleRepository : IArticleRepository
     {
         await _context.Rates.AddAsync(rateMail);
         _context.SaveChangesAsync();
+        // var rates = _context.Rates.Where(x => x.ArticleID == rateMail.ArticleID);
+        // var entity = _context.Articles.FirstOrDefault(item => item.ID == rateMail.ArticleID);
+        // entity.Rateing = rates.Sum(IEnumerable<int>);
     }
 
     public async Task DeleteRate(int articleId, int userId)

@@ -1,19 +1,12 @@
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.IO;
-using System.Threading.Tasks;
-using YourNamespace;
-using YourNamespace.Data;
-// Импортируйте пространство имен для IFileRecordRepository
 
 [Route("api/[controller]")]
 [ApiController]
-public class FileUploadController : ControllerBase
+public class FileController : ControllerBase
 {
-    private readonly IFileRecordRepository _fileRecordRepository;
+    private readonly IFileRepository _fileRecordRepository;
 
-    public FileUploadController(IFileRecordRepository fileRecordRepository)
+    public FileController(IFileRepository fileRecordRepository)
     {
         _fileRecordRepository = fileRecordRepository;
     }

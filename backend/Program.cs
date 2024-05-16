@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Authorization;
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
-using YourNamespace.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,15 +34,15 @@ builder.Services.AddSingleton<IUserRepository>(provider =>
     return userRepository;
 });
 
-builder.Services.AddSingleton<IFileRecordRepository>(provider =>
+builder.Services.AddSingleton<IFileRepository>(provider =>
 {
-    var optionsBuilder = new DbContextOptionsBuilder<YourDbContext>();
+    var optionsBuilder = new DbContextOptionsBuilder<FileContext>();
     optionsBuilder.UseSqlite("Data Source=FileRecords.db"); 
-    var yourDbContext = new YourDbContext(optionsBuilder.Options);
-    yourDbContext.Database.EnsureCreated(); 
-    IFileRecordRepository youRepository = new FileRecordRepository(yourDbContext);
+    var fileContext = new FileContext(optionsBuilder.Options);
+    fileContext.Database.EnsureCreated(); 
+    IFileRepository fileRepository = new FileRepository(fileContext);
 
-    return youRepository;
+    return fileRepository;
 });
 
 builder.Services.AddSingleton<IArticleRepository>(provider =>

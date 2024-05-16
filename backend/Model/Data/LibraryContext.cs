@@ -19,8 +19,9 @@ public class LibraryContext : DbContext
         modelBuilder.Entity<Article>().HasKey(t=>t.ID);
         modelBuilder.Entity<Article>().ToTable(t => t.HasCheckConstraint("ValidName", "Name < 100 AND Name > 10"));
         modelBuilder.Entity<User>().HasKey(t=>t.ID);
-        modelBuilder.Entity<User>().ToTable(t => t.HasCheckConstraint("ValidName", "Login < 20 AND Login > 5"));
+        modelBuilder.Entity<User>().ToTable(t => t.HasCheckConstraint("ValidLogin", "Login < 20 AND Login > 5"));
         modelBuilder.Entity<Rate>().HasKey(t=>t.ID);
+        modelBuilder.Entity<User>().ToTable(t => t.HasCheckConstraint("ValidRating", "Rateing <= 10 AND Rateing >= 0"));
         modelBuilder.Entity<Favorite>().HasKey(t=>t.ID);
     }
 }

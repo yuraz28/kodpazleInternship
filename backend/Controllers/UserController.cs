@@ -23,7 +23,7 @@ public class UserController : ControllerBase
     public async Task<IActionResult> Add([FromBody] User user)
     {
         _user.Add(user);
-        return Ok();
+        return Ok("Пользователь был добавлен в базу данных.");
     }
 
     [HttpDelete("/api/user")]
@@ -31,14 +31,14 @@ public class UserController : ControllerBase
     {
 
         _user.Delete(id);
-        return Ok("Пользователь удалён");
+        return Ok("Пользователь был удалён из базы данных.");
     }
 
     [HttpPost("/api/authorization")]
     public async Task<IActionResult> Authorization(string login, string password)
     {
         var flag = await _user.Authorization(login, password);
-        if (flag) return Ok("Авторизирован");
-        return NotFound("Не авторизирован");
+        if (flag) return Ok("Вы были авторизированны.");
+        return NotFound("Вы не были авторизированны.");
     }
 }

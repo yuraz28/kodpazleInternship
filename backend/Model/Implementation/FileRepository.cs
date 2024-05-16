@@ -1,13 +1,12 @@
 using System.Linq;
 using System.Threading.Tasks;
-using YourNamespace.Data; // Убедитесь, что вы импортировали пространство имен для YourDbContext
 using Microsoft.EntityFrameworkCore;
 
-public class FileRecordRepository : IFileRecordRepository
+public class FileRepository : IFileRepository
 {
-    private readonly YourDbContext _context;
+    private readonly FileContext _context;
 
-    public FileRecordRepository(YourDbContext context)
+    public FileRepository(FileContext context)
     {
         _context = context;
     }

@@ -29,15 +29,16 @@ public class ArticleContorller : ControllerBase
     [HttpDelete("/api/article")]
     public async Task<IActionResult> Delete([FromBody] int articleId)
     {
-        await _article.Delete(articleId);
-        return Ok();
+        if(await _article.Delete(articleId)) return Ok($"Статья с ID={articleId} была удалена.");
+        return NotFound("Статья с ID={articleId} не была найдена.");
+
     }
 
     [HttpPut("/api/article")]
     public async Task<IActionResult> Edit([FromBody] EditArticle article)
     {
         await _article.EditArticle(article);
-        return Ok();
+        return Ok("Статья была отредактированна.");
     }
 
     [HttpGet("/api/favorites")]
@@ -51,14 +52,14 @@ public class ArticleContorller : ControllerBase
     public async Task<IActionResult> AddFavorite([FromBody] Favorite favorite)
     {
         await _article.AddFavorite(favorite);
-        return Ok();
+        return Ok("Статья была добавленна в избранное.");
     }
 
     [HttpDelete("/api/favorites")]
     public async Task<IActionResult> DeleteFavorite(int materialId, int userId)
     {
         await _article.DeleteFavorite(materialId, userId);
-        return Ok();
+        return Ok("Статья была удалена из избранного.");
     }
 
     [HttpGet("/api/rate")]
@@ -72,7 +73,7 @@ public class ArticleContorller : ControllerBase
     public async Task<IActionResult> AddRate([FromBody] Rate Rate)
     {
         await _article.AddRate(Rate);
-        return Ok();
+        return Ok("Статье была дана оценка.");
     }
 
     [HttpDelete("/api/rate")]
