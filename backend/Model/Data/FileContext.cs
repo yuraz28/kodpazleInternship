@@ -9,6 +9,6 @@ public class FileContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        modelBuilder.Entity<Article>().HasKey(t=>t.ID);
+        modelBuilder.Entity<FileRecord>().HasKey(t=>t.ID);
     }
 }
