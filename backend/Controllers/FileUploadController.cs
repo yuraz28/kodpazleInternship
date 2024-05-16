@@ -16,7 +16,20 @@ public class FileUploadController : ControllerBase
         _fileRecordRepository = fileRecordRepository;
     }
 
-    [HttpPost]
+    [HttpGet("/api/file")]
+    public async Task<ActionResult<IEnumerable<string>>> GetFilesForArticle(int articleId)
+    {
+        var fileRecords = await _fileRecordRepository.GetByArticleIdAsync(articleId);
+        if (!fileRecords.Any())
+        {
+            return NotFound($"No files found for article with ID {articleId}.");
+        }
+
+        var filePaths = fileRecords.Select(fr => fr.FilePath).ToList();
+        return Ok(filePaths);
+    }
+
+    [HttpPost("/api/file")]
     public async Task<IActionResult> UploadFile(IFormFile file, int articleId)
     {
         if (file == null || file.Length == 0)
@@ -40,18 +53,5 @@ public class FileUploadController : ControllerBase
         await _fileRecordRepository.AddAsync(fileRecord);
 
         return Ok(new { Message = "Файл успешно загружен и сохранен.", FilePath = filePath, ArticleId = articleId });
-    }
-
-    [HttpGet("{articleId}/files")]
-    public async Task<ActionResult<IEnumerable<string>>> GetFilesForArticle(int articleId)
-    {
-        var fileRecords = await _fileRecordRepository.GetByArticleIdAsync(articleId);
-        if (!fileRecords.Any())
-        {
-            return NotFound($"No files found for article with ID {articleId}.");
-        }
-
-        var filePaths = fileRecords.Select(fr => fr.FilePath).ToList();
-        return Ok(filePaths);
     }
 }
