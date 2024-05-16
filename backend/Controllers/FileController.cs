@@ -4,23 +4,23 @@ using Microsoft.AspNetCore.Mvc;
 [ApiController]
 public class FileController : ControllerBase
 {
-    private readonly IFileRepository _fileRecordRepository;
+    private readonly IFileRepository _fileRepository;
 
-    public FileController(IFileRepository fileRecordRepository)
+    public FileController(IFileRepository fileRepository)
     {
-        _fileRecordRepository = fileRecordRepository;
+        _fileRepository = fileRepository;
     }
 
     [HttpGet("/api/fileall")]
     public async Task<List<FileRecord>> AllFile()
     {
-        return await _fileRecordRepository.GetAllAsync();
+        return await _fileRepository.GetAllAsync();
     }
 
     [HttpGet("/api/file")]
-    public async Task<ActionResult<IEnumerable<string>>> GetFilesByID(int articleId)
+    public async Task<ActionResult<IEnumerable<string>>> GetFilesByID(int articleID)
     {
-        var fileRecords = await _fileRecordRepository.GetByArticleIdAsync(articleId);
+        var fileRecords = await _fileRepository.GetByArticleIdAsync(articleID);
         if (!fileRecords.Any())
         {
             return NotFound($"Статья не была найдена");
@@ -50,7 +50,7 @@ public class FileController : ControllerBase
         }
 
         var fileRecord = new FileRecord { FilePath = filePath, ArticleId = articleId };
-        await _fileRecordRepository.AddAsync(fileRecord);
+        await _fileRepository.AddAsync(fileRecord);
 
         return Ok(new { Message = "Файл успешно загружен и сохранен.", FilePath = filePath, ArticleId = articleId });
     }
@@ -58,7 +58,7 @@ public class FileController : ControllerBase
     [HttpDelete("/api/file")]
     public async Task<IActionResult> DeleteAsync(int id)
     {
-        if (await _fileRecordRepository.DeleteFileAsync(id)) return Ok();
+        if (await _fileRepository.DeleteFileAsync(id)) return Ok();
         return NotFound();
     }
 }

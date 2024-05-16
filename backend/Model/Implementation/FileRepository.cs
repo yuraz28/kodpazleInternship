@@ -19,7 +19,7 @@ public class FileRepository : IFileRepository
 
     public async Task<bool> DeleteFileAsync(int id)
     {
-       var fileRecord = await _context.FileRecords.FirstOrDefaultAsync(fr => fr.Id == id);
+       var fileRecord = await _context.FileRecords.FirstOrDefaultAsync(fr => fr.ID == id);
        if (fileRecord!= null)
         {
            // Удаление файла из системы

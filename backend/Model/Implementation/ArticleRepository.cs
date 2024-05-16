@@ -50,9 +50,9 @@ public class ArticleRepository : IArticleRepository
             _context.SaveChangesAsync();
     }
 
-    public async Task DeleteFavorite(int materialid, int userId)
+    public async Task DeleteFavorite(int materialID, int userID)
     {
-        _context.Favorites.Remove(await _context.Favorites.SingleOrDefaultAsync(x => x.UserID == userId && x.MaterialId == materialid));
+        _context.Favorites.Remove(await _context.Favorites.SingleOrDefaultAsync(x => x.UserID == userID && x.MaterialID == materialID));
         _context.SaveChangesAsync();
     }
 
@@ -69,9 +69,9 @@ public class ArticleRepository : IArticleRepository
             }
     }
 
-    public async Task AddRate(Rate rateMail)
+    public async Task AddRate(Rate rate)
     {
-        await _context.Rates.AddAsync(rateMail);
+        await _context.Rates.AddAsync(rate);
         _context.SaveChangesAsync();
         // var rates = _context.Rates.Where(x => x.ArticleID == rateMail.ArticleID);
         // var entity = _context.Articles.FirstOrDefault(item => item.ID == rateMail.ArticleID);

@@ -6,9 +6,9 @@
     Task<Article> Get(int id);
     Task<List<Favorite>> GetAllFavorite(int userId);
     Task AddFavorite(Favorite favorite);
-    Task DeleteFavorite(int materialid, int userId);
+    Task DeleteFavorite(int materialID, int userID);
     Task EditArticle(EditArticle material);
-    Task AddRate(Rate rateMail);
-    Task DeleteRate(int articleId, int userId);
+    Task AddRate(Rate rate);
+    Task DeleteRate(int articleID, int userID);
     Task<List<Rate>> GetAllRates();
 }
