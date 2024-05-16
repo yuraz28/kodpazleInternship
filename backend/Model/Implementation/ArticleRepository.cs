@@ -72,9 +72,11 @@ public class ArticleRepository : IArticleRepository
     {
         await _context.Rates.AddAsync(rate);
         await _context.SaveChangesAsync();
-        // var rates = _context.Rates.Where(x => x.ArticleID == rateMail.ArticleID);
-        // var entity = _context.Articles.FirstOrDefault(item => item.ID == rateMail.ArticleID);
-        // entity.Rateing = rates.Sum(IEnumerable<int>);
+        List<Rate> rates = new List<Rate>();
+        rates = _context.Rates.Where(x => x.ArticleID == rate.ArticleID).ToList();
+        var entity = await _context.Articles.FirstOrDefaultAsync(item => item.ID == rate.ArticleID);
+        entity.Rating = rates.Sum(x => x.ID) / rates.Count();
+        await _context.SaveChangesAsync();
     }
 
     public async Task DeleteRate(int articleId, int userId)
