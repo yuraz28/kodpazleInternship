@@ -30,6 +30,7 @@ button{
     height: 50px;
     align-items: center;
     justify-content: center;
+    animation: slideFadeInOut 1s ease-out;  
 }
 
 .header-logo-p{
@@ -51,8 +52,9 @@ button{
     background-color: #fff;
     justify-content: center;
     filter: drop-shadow(0px 3px  4px #0000003f);
-}
+    animation: fadeIn 1s ease-out;
 
+}
 .nav-back{
     display: flex;
     gap: 20px;
@@ -92,6 +94,7 @@ button{
     margin-bottom: 10px;
     margin-left: 18%;
     margin-right: 18%;
+
 }
 
 h1{
@@ -179,26 +182,6 @@ h1{
     border: none;
     font-size: 18px;
 }
-@keyframes slideFadeInOut{
-    0% {
-        opacity: 0;
-        transform: translateY(-20%);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-@keyframes fadeOut {
-    0% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(-20%);
-    }
-}
 .menu-list-filter{
     animation-name: slideFadeInOut;
     animation-duration: 0.5s;
@@ -254,15 +237,45 @@ h1{
     justify-content: center;
     align-items: center;
 }
+.modal_std_lsit{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-family: "Manrope";
+}
 .modal_std_lsit div{
     display: flex;
+    font-size: 20px;
+    font-weight: 700;
     flex-direction: column;
 }
 .modal_std_lsit input{
-    height: 30px;
-    width: 220px;
+    height: 60px;
+    width: 470px;
+    border: 1px solid black;
+    background: none;
+    text-indent: 5px;
+    font-size: 20px;
+    border-radius: 20px;
 }
 .modal_std{
     background: white;
+    animation: slideFadeInOut 1s ease-out;  
     padding: 50px;
+    border-radius: 10px;
+}
+#add_std_list{
+    width: 200px;
+    height: 70px;
+    background: #4094F7;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    margin-top: 20px;
+    font-size: 18px;
+    transition: 0.2s ease-in;
+}
+#add_std_list:hover{
+    transform: scale(1.1);
 }

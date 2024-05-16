@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('password_std').value = '';
         } else {
             modal.classList.remove('active');
-            closeModalAndSubmit(); // Вызываем функцию отправки данных после закрытия модального окна
+            closeModalAndSubmit(); 
         }
     }
 
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (event.target === modal) {
             modal.classList.remove('active');
-            closeModalAndSubmit(); // Вызываем функцию отправки данных при клике вне модального окна
+            closeModalAndSubmit(); 
         }
     };
 
@@ -71,7 +71,21 @@ function closeModalAndSubmit() {
             console.error(error);
             alert('Произошла ошибка: ' + error.message);
         });
-    } else {
-        alert('Пожалуйста, заполните все поля.');
     }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    // URL вашего серверного ресурса
+    const url = 'https://yourserver.com/api/data';
+
+    axios.get(url)
+       .then(function (response) {
+            // Обработка успешного ответа
+            console.log(response.data);
+            // Здесь вы можете обновить DOM с новыми данными
+        })
+       .catch(function (error) {
+            // Обработка ошибок
+            console.error('Ошибка:', error);
+        });
+});
