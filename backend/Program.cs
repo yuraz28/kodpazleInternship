@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Authorization;
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using YourNamespace.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options => 
@@ -33,6 +35,17 @@ builder.Services.AddSingleton<IUserRepository>(provider =>
     return userRepository;
 });
 
+builder.Services.AddSingleton<IFileRecordRepository>(provider =>
+{
+    var optionsBuilder = new DbContextOptionsBuilder<YourDbContext>();
+    optionsBuilder.UseSqlite("Data Source=FileRecords.db"); 
+    var yourDbContext = new YourDbContext(optionsBuilder.Options);
+    yourDbContext.Database.EnsureCreated(); 
+    IFileRecordRepository youRepository = new FileRecordRepository(yourDbContext);
+
+    return youRepository;
+});
+
 builder.Services.AddSingleton<IArticleRepository>(provider =>
 {
     var optionsBuilder = new DbContextOptionsBuilder<LibraryContext>();
@@ -42,17 +55,6 @@ builder.Services.AddSingleton<IArticleRepository>(provider =>
     IArticleRepository articleRepository = new ArticleRepository(libraryContext);
 
     return articleRepository;
-});
-
-builder.Services.AddSingleton<IUserRepository>(provider =>
-{
-    var optionsBuilder = new DbContextOptionsBuilder<LibraryContext>();
-    optionsBuilder.UseSqlite("Data Source=LibraryDataBase.db"); 
-    var libraryContext = new LibraryContext(optionsBuilder.Options);
-    libraryContext.Database.EnsureCreated(); 
-    IUserRepository userRepository = new UserRepository(libraryContext);
-
-    return userRepository;
 });
 
 var app = builder.Build();

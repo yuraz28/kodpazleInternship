@@ -10,5 +10,5 @@
     Task EditArticle(EditArticle material);
     Task AddRate(Rate rateMail);
     Task DeleteRate(int articleId, int userId);
-    public Task<List<Rate>> GetAllRates();
+    Task<List<Rate>> GetAllRates();
 }

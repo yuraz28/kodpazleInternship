@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "cukeqE2WtzqjCiSiRzsTHEB9bxZfK5SkIIpcCABHL/GtIga1LHS2vpuHcM2QMkyxfdfNqK6GLso4PnvXelw5Hg==",
-  "success": false,
+  "dgSpecHash": "jbBo5ZfUIw81RM70MKUSm6lwpaBaHFEc8lwz4dV8erfwulDkpjNDxsgMvOLPX2TACuFUeg9cRGuQ1HqW1k8S3A==",
+  "success": true,
   "projectFilePath": "C:\\Users\\Матигоров Никита\\Documents\\Викинги кода\\Code\\kodpazleInternship\\backend\\backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Матигоров Никита\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
@@ -12,14 +12,14 @@
     "C:\\Users\\Матигоров Никита\\.nuget\\packages\\microsoft.codeanalysis.csharp\\4.5.0\\microsoft.codeanalysis.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\Матигоров Никита\\.nuget\\packages\\microsoft.codeanalysis.csharp.workspaces\\4.5.0\\microsoft.codeanalysis.csharp.workspaces.4.5.0.nupkg.sha512",
     "C:\\Users\\Матигоров Никита\\.nuget\\packages\\microsoft.codeanalysis.workspaces.common\\4.5.0\\microsoft.codeanalysis.workspaces.common.4.5.0.nupkg.sha512",
-    "C:\\Users\\Матигоров Никита\\.nuget\\packages\\microsoft.data.sqlite.core\\8.0.4\\microsoft.data.sqlite.core.8.0.4.nupkg.sha512",
-    "C:\\Users\\Матигоров Никита\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.4\\microsoft.entityframeworkcore.8.0.4.nupkg.sha512",
-    "C:\\Users\\Матигоров Никита\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.4\\microsoft.entityframeworkcore.abstractions.8.0.4.nupkg.sha512",
-    "C:\\Users\\Матигоров Никита\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\8.0.4\\microsoft.entityframeworkcore.analyzers.8.0.4.nupkg.sha512",
+    "C:\\Users\\Матигоров Никита\\.nuget\\packages\\microsoft.data.sqlite.core\\8.0.5\\microsoft.data.sqlite.core.8.0.5.nupkg.sha512",
+    "C:\\Users\\Матигоров Никита\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.5\\microsoft.entityframeworkcore.8.0.5.nupkg.sha512",
+    "C:\\Users\\Матигоров Никита\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.5\\microsoft.entityframeworkcore.abstractions.8.0.5.nupkg.sha512",
+    "C:\\Users\\Матигоров Никита\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\8.0.5\\microsoft.entityframeworkcore.analyzers.8.0.5.nupkg.sha512",
     "C:\\Users\\Матигоров Никита\\.nuget\\packages\\microsoft.entityframeworkcore.design\\8.0.5\\microsoft.entityframeworkcore.design.8.0.5.nupkg.sha512",
     "C:\\Users\\Матигоров Никита\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\8.0.5\\microsoft.entityframeworkcore.relational.8.0.5.nupkg.sha512",
-    "C:\\Users\\Матигоров Никита\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite\\8.0.4\\microsoft.entityframeworkcore.sqlite.8.0.4.nupkg.sha512",
-    "C:\\Users\\Матигоров Никита\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite.core\\8.0.4\\microsoft.entityframeworkcore.sqlite.core.8.0.4.nupkg.sha512",
+    "C:\\Users\\Матигоров Никита\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite\\8.0.5\\microsoft.entityframeworkcore.sqlite.8.0.5.nupkg.sha512",
+    "C:\\Users\\Матигоров Никита\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite.core\\8.0.5\\microsoft.entityframeworkcore.sqlite.core.8.0.5.nupkg.sha512",
     "C:\\Users\\Матигоров Никита\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\8.0.5\\microsoft.entityframeworkcore.tools.8.0.5.nupkg.sha512",
     "C:\\Users\\Матигоров Никита\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\Матигоров Никита\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\8.0.0\\microsoft.extensions.caching.abstractions.8.0.0.nupkg.sha512",
@@ -59,15 +59,5 @@
     "C:\\Users\\Матигоров Никита\\.nuget\\packages\\system.text.json\\8.0.0\\system.text.json.8.0.0.nupkg.sha512",
     "C:\\Users\\Матигоров Никита\\.nuget\\packages\\system.threading.channels\\6.0.0\\system.threading.channels.6.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1605",
-      "level": "Error",
-      "message": "Warning As Error: Detected package downgrade: Microsoft.EntityFrameworkCore from 8.0.5 to 8.0.4. Reference the package directly from the project to select a different version. \r\n backend -> Microsoft.EntityFrameworkCore.Tools 8.0.5 -> Microsoft.EntityFrameworkCore.Design 8.0.5 -> Microsoft.EntityFrameworkCore.Relational 8.0.5 -> Microsoft.EntityFrameworkCore (>= 8.0.5) \r\n backend -> Microsoft.EntityFrameworkCore (>= 8.0.4)",
-      "libraryId": "Microsoft.EntityFrameworkCore",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    }
-  ]
+  "logs": []
 }

@@ -81,4 +81,5 @@ public class ArticleContorller : ControllerBase
         await _article.DeleteRate(articleId, UserId);
         return Ok();
     }
+    
 }
