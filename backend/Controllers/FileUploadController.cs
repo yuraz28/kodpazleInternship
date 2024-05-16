@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.IO;
 using System.Threading.Tasks;
 using YourNamespace;
- // Импортируйте пространство имен для IFileRecordRepository
+using YourNamespace.Data;
+// Импортируйте пространство имен для IFileRecordRepository
 
 [Route("api/[controller]")]
 [ApiController]
@@ -16,15 +18,20 @@ public class FileUploadController : ControllerBase
         _fileRecordRepository = fileRecordRepository;
     }
 
+    [HttpGet("/api/fileall")]
+    public async Task<List<FileRecord>> AllFile()
+    {
+        return await _fileRecordRepository.GetAllAsync();
+    }
+
     [HttpGet("/api/file")]
-    public async Task<ActionResult<IEnumerable<string>>> GetFilesForArticle(int articleId)
+    public async Task<ActionResult<IEnumerable<string>>> GetFilesByID(int articleId)
     {
         var fileRecords = await _fileRecordRepository.GetByArticleIdAsync(articleId);
         if (!fileRecords.Any())
         {
-            return NotFound($"No files found for article with ID {articleId}.");
+            return NotFound($"Статья не была найдена");
         }
-
         var filePaths = fileRecords.Select(fr => fr.FilePath).ToList();
         return Ok(filePaths);
     }
@@ -53,5 +60,12 @@ public class FileUploadController : ControllerBase
         await _fileRecordRepository.AddAsync(fileRecord);
 
         return Ok(new { Message = "Файл успешно загружен и сохранен.", FilePath = filePath, ArticleId = articleId });
+    }
+
+    [HttpDelete("/api/file")]
+    public async Task<IActionResult> DeleteAsync(int id)
+    {
+        if (await _fileRecordRepository.DeleteFileAsync(id)) return Ok();
+        return NotFound();
     }
 }

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 public interface IFileRecordRepository
 {
     Task AddAsync(FileRecord fileRecord);
-    Task<IEnumerable<FileRecord>> GetAllAsync();
+    Task<bool> DeleteFileAsync(int id);
+    Task<List<FileRecord>> GetAllAsync();
     Task<IEnumerable<FileRecord>> GetByArticleIdAsync(int articleId); // Новый метод
 }
