@@ -89,7 +89,7 @@ public class ManagerContorller : ControllerBase
     [HttpPost("/api/user/auth")]
     public IActionResult Auth([FromBody] UserK u)
     {
-        User user = _manager.GetUser(u.Login);
+        User user = _manager.GetUser(u.Email);
         if (user !=  null) // Проверяем, найден ли пользователь
         {
             if (_manager.AuthUser(user, u.Password) == "Пользователь авторизован") 
@@ -113,17 +113,17 @@ public class ManagerContorller : ControllerBase
 
     public class UserK
     {
-        public string? Login { get; set; }
+        public string? Email { get; set; }
         public string? Password { get; set; }
     }
 
 
     [HttpGet("api/user/getrole")]
-    public IActionResult GetRoleUser(string login)
+    public IActionResult GetRoleUser(string email)
     {
-        if (_manager.GetRole(login) != null)
+        if (_manager.GetRole(email) != null)
         {
-            return Ok(_manager.GetRole(login));
+            return Ok(_manager.GetRole(email));
         }
         else 
         {

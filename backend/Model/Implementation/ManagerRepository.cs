@@ -60,9 +60,9 @@ public class ManagerRepository : IManagerRepository
         return _context.Users.FirstOrDefault(t => t.ID == id);
     }
 
-    public User GetUser(string login)
+    public User GetUser(string email)
     {
-        return _context.Users.FirstOrDefault(t => t.Name == login);
+        return _context.Users.FirstOrDefault(t => t.Email == email);
     }
 
     public void AddMaterial(Material material)
@@ -155,7 +155,7 @@ public string AuthUser(User user, string pass)
 
   public string GetRole(string login)
   {
-    return _context.Users.FirstOrDefault(t => t.Name == login).Role;
+    return _context.Users.FirstOrDefault(t => t.Email == login).Role;
   }
 
 }
