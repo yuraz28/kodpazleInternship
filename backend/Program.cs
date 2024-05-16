@@ -52,6 +52,28 @@ builder.Services.AddSingleton<IManagerRepository>(provider =>
     return managerRepository;
 });
 
+builder.Services.AddSingleton<IFileRepository>(provider =>
+{
+    var optionsBuilder = new DbContextOptionsBuilder<FileContext>();
+    optionsBuilder.UseSqlite("Data Source=FileRecords.db"); 
+    var fileContext = new FileContext(optionsBuilder.Options);
+    fileContext.Database.EnsureCreated(); 
+    IFileRepository fileRepository = new FileRepository(fileContext);
+
+    return fileRepository;
+});
+
+builder.Services.AddSingleton<IArticleRepository>(provider =>
+{
+    var optionsBuilder = new DbContextOptionsBuilder<LibraryContext>();
+    optionsBuilder.UseSqlite("Data Source=ArticlesDataBase.db"); 
+    var libraryContext = new LibraryContext(optionsBuilder.Options);
+    libraryContext.Database.EnsureCreated(); 
+    IArticleRepository articleRepository = new ArticleRepository(libraryContext);
+
+    return articleRepository;
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
