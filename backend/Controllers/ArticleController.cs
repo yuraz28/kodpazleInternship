@@ -22,7 +22,7 @@ public class ArticleContorller : ControllerBase
     [HttpPost("/api/article")]
     public async Task<IActionResult> Add([FromBody] Article article)
     {
-        _article.Add(article);
+        await _article.Add(article);
         return Ok();
     }
 
@@ -30,7 +30,7 @@ public class ArticleContorller : ControllerBase
     public async Task<IActionResult> Delete([FromBody] int articleId)
     {
         if(await _article.Delete(articleId)) return Ok($"Статья с ID={articleId} была удалена.");
-        return NotFound("Статья с ID={articleId} не была найдена.");
+        return NotFound("Статья с ID={articleId} нет в базе данных.");
 
     }
 

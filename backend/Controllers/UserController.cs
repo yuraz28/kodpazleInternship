@@ -22,7 +22,7 @@ public class UserController : ControllerBase
     [HttpPost("/api/user")]
     public async Task<IActionResult> Add([FromBody] User user)
     {
-        _user.Add(user);
+        await _user.Add(user);
         return Ok("Пользователь был добавлен в базу данных.");
     }
 
@@ -30,7 +30,7 @@ public class UserController : ControllerBase
     public async Task<IActionResult> Delete([FromBody] int id)
     {
 
-        _user.Delete(id);
+        await _user.Delete(id);
         return Ok("Пользователь был удалён из базы данных.");
     }
 

@@ -12,7 +12,7 @@ public class ArticleRepository : IArticleRepository
     public async Task Add(Article material)
     {
         await _context.Articles.AddAsync(material);
-        _context.SaveChangesAsync();
+        await _context.SaveChangesAsync();
     }
 
     public async Task<bool> Delete(int id)
@@ -20,7 +20,7 @@ public class ArticleRepository : IArticleRepository
         if (await _context.Articles.FirstOrDefaultAsync(x => x.ID == id) != null)
         {
             _context.Articles.Remove(await _context.Articles.SingleOrDefaultAsync(x => x.ID == id));
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
             return true;
         }
         return false;
@@ -47,13 +47,13 @@ public class ArticleRepository : IArticleRepository
     public async Task AddFavorite(Favorite favorite)
     {
             await _context.Favorites.AddAsync(favorite);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
     }
 
     public async Task DeleteFavorite(int materialID, int userID)
     {
         _context.Favorites.Remove(await _context.Favorites.SingleOrDefaultAsync(x => x.UserID == userID && x.MaterialID == materialID));
-        _context.SaveChangesAsync();
+        await _context.SaveChangesAsync();
     }
 
     public async Task EditArticle(EditArticle material)
@@ -64,15 +64,14 @@ public class ArticleRepository : IArticleRepository
             {
                 if (material.Name != null) entity.Name = material.Name;
                 if (material.Information != null) entity.Information = material.Information;
-                // if (material.UrlImage != null) entity.UrlImage = material.UrlImage;
-                _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
             }
     }
 
     public async Task AddRate(Rate rate)
     {
         await _context.Rates.AddAsync(rate);
-        _context.SaveChangesAsync();
+        await _context.SaveChangesAsync();
         // var rates = _context.Rates.Where(x => x.ArticleID == rateMail.ArticleID);
         // var entity = _context.Articles.FirstOrDefault(item => item.ID == rateMail.ArticleID);
         // entity.Rateing = rates.Sum(IEnumerable<int>);
@@ -81,7 +80,7 @@ public class ArticleRepository : IArticleRepository
     public async Task DeleteRate(int articleId, int userId)
     {
         _context.Rates.Remove(await _context.Rates.SingleOrDefaultAsync(x => x.UserID == userId && x.ArticleID == articleId));
-        _context.SaveChangesAsync();
+        await _context.SaveChangesAsync();
     }
 
     public async Task<List<Rate>> GetAllRates()

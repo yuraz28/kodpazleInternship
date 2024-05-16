@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 
-[Route("api/[controller]")]
 [ApiController]
 public class FileController : ControllerBase
 {
@@ -30,7 +29,7 @@ public class FileController : ControllerBase
     }
 
     [HttpPost("/api/file")]
-    public async Task<IActionResult> UploadFile(IFormFile file, int articleId)
+    public async Task<IActionResult> UploadFile(IFormFile file, int articleID)
     {
         if (file == null || file.Length == 0)
             return BadRequest("Файл не был предоставлен.");
@@ -44,15 +43,15 @@ public class FileController : ControllerBase
                 await file.CopyToAsync(stream);
             }
         }
-        catch (IOException ex)
+        catch
         {
             return BadRequest($"Файл с таким именем уже существует: {file.FileName}");
         }
 
-        var fileRecord = new FileRecord { FilePath = filePath, ArticleId = articleId };
+        var fileRecord = new FileRecord {FilePath = filePath, ArticleId = articleID};
         await _fileRepository.AddAsync(fileRecord);
 
-        return Ok(new { Message = "Файл успешно загружен и сохранен.", FilePath = filePath, ArticleId = articleId });
+        return Ok(new {Message = "Файл успешно загружен и сохранен.", FilePath = filePath, ArticleId = articleID});
     }
 
     [HttpDelete("/api/file")]
