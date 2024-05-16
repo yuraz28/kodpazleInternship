@@ -1,6 +1,6 @@
 ﻿public interface IManagerRepository
 {
-    void AddUser(User user);
+    string AddUser(User user);
     bool DeleteUser(int id);
     List<User> GetAllUsers();
     User GetUser(int id);

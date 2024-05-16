@@ -66,8 +66,10 @@ public class ManagerContorller : ControllerBase
     public IActionResult Register([FromBody] AddingUser us)
     {
         var user = new User("Участник", us.Name, us.Email, us.Password, [0]);
-        _manager.AddUser(user);
-        return Ok();
+        var answer = _manager.AddUser(user);
+        if (answer == "Логин, почта или пароль не соответствуют требованиям") return BadRequest("Логин, почта или пароль не соответствуют требованиям");
+        else if (answer == "Пользователь с такой почтой уже существует") return Unauthorized("Пользователь с такой почтой уже существует");
+        else return Ok("Пользователь успешно добавлен");
     }
 
     public class AddingUser

@@ -9,33 +9,29 @@ public class ManagerRepository : IManagerRepository
         _context = context;
     }
 
-    public void AddUser(User user)
+    public string AddUser(User user)
     {
         if(_context.Users.Any(u => u.Email == user.Email))
         {
-            Console.WriteLine("Account with email " + user.Email + " already exists."); 
-            return;
+            return "Пользователь с такой почтой уже существует";
         } 
 
         string [] domens = new string[3] {"ru", "com", "com"};
 
-        _context.Users.Add(user);
-        _context.SaveChanges();
-
-        // if(user.Email.Contains("@") 
-        //     && user.Email.Contains(".")
-        //     && user.Email.Length > 5
-        //     && user.Email.Length < 50
-        //     && domens.Any(d => user.Email.Split('.').Last().Contains(d)))
-        // {
-        //     Console.WriteLine($"Email of {user.Name} is valid.");
-        //     _context.Users.Add(user); 
-        //     _context.SaveChanges();
-        // }
-        // else
-        // {
-        //     return;
-        // }
+        if(user.Email.Contains("@") 
+            && user.Email.Contains(".")
+            && user.Email.Length > 5
+            && user.Email.Length < 50
+            && domens.Any(d => user.Email.Split('.').Last().Contains(d)))
+        {
+            _context.Users.Add(user); 
+            _context.SaveChanges();
+            return "Пользователь добавлен";
+        }
+        else
+        {
+            return "Логин, почта или пароль не соответствуют требованиям";
+        }
     }
 
     public bool DeleteUser(int id)
