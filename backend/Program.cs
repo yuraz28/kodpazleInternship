@@ -29,17 +29,17 @@ builder.Services.AddCors(options =>
                             .AllowAnyMethod()); 
     }); 
 
-// Your existing service registrations
-builder.Services.AddSingleton<IMaterialRepository>(provider =>
-{
-    var optionsBuilder = new DbContextOptionsBuilder<LibraryContext>();
-    optionsBuilder.UseSqlite("Data Source=LibraryDataBase.db"); 
-    var libraryContext = new LibraryContext(optionsBuilder.Options);
-    libraryContext.Database.EnsureCreated(); 
-    IMaterialRepository materialRepository = new MaterialRepository(libraryContext);
+// // Your existing service registrations
+// builder.Services.AddSingleton<IMaterialRepository>(provider =>
+// {
+//     var optionsBuilder = new DbContextOptionsBuilder<LibraryContext>();
+//     optionsBuilder.UseSqlite("Data Source=LibraryDataBase.db"); 
+//     var libraryContext = new LibraryContext(optionsBuilder.Options);
+//     libraryContext.Database.EnsureCreated(); 
+//     IMaterialRepository materialRepository = new MaterialRepository(libraryContext);
 
-    return materialRepository;
-});
+//     return materialRepository;
+// });
 
 builder.Services.AddSingleton<IManagerRepository>(provider =>
 {

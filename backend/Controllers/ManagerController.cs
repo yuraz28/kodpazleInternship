@@ -130,4 +130,10 @@ public class ManagerContorller : ControllerBase
             return NotFound("Пользователь не найден");
         }
     }
+
+    [HttpPost("api/user/addpeople")]
+    public IActionResult AddPeople([FromBody] User user)
+    {
+        return Ok( _manager.AddUser(user));
+    }
 }
