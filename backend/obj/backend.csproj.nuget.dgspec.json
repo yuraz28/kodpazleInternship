@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\code\\kodpazleInternship\\backend\\backend.csproj": {}
+    "/Users/ilakonev/VSCodeProjects/kod/kodpazleInternship/backend/backend.csproj": {}
   },
   "projects": {
-    "C:\\code\\kodpazleInternship\\backend\\backend.csproj": {
+    "/Users/ilakonev/VSCodeProjects/kod/kodpazleInternship/backend/backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\code\\kodpazleInternship\\backend\\backend.csproj",
+        "projectUniqueName": "/Users/ilakonev/VSCodeProjects/kod/kodpazleInternship/backend/backend.csproj",
         "projectName": "backend",
-        "projectPath": "C:\\code\\kodpazleInternship\\backend\\backend.csproj",
-        "packagesPath": "C:\\Users\\july2\\.nuget\\packages\\",
-        "outputPath": "C:\\code\\kodpazleInternship\\backend\\obj\\",
+        "projectPath": "/Users/ilakonev/VSCodeProjects/kod/kodpazleInternship/backend/backend.csproj",
+        "packagesPath": "/Users/ilakonev/.nuget/packages/",
+        "outputPath": "/Users/ilakonev/VSCodeProjects/kod/kodpazleInternship/backend/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\july2\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/ilakonev/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -32,6 +32,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -78,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
