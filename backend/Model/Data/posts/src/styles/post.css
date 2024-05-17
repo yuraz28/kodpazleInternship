@@ -1,0 +1,63 @@
+.post_list{
+    display: flex;
+    justify-content: center;
+}
+.post_list_section{
+    display: flex;
+    width: 1200px;
+    justify-content: center;
+}
+.post_list_info{
+    width: 800px;
+}
+.post_header_section{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.post_header{
+    display: flex;
+    align-items: center;
+    font-family: "Manrope";
+    font-size: 18px;
+    gap: 5px;
+}
+#post{
+    margin-top: 40px;
+}
+#name_post{
+    font-size: 28px;
+    font-weight: 400;
+}
+#post_time{
+    display: flex;
+    gap: 5px;
+}
+#footer-post{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+#up_post{
+    background: none;
+    border: none;
+}
+.like-post {
+    display: flex;
+    gap: 5px;
+}
+.like-post button{
+    background: none;
+    border: none;
+}
+.repost button{
+    background: none;
+    border: none;
+}
+.repost{
+    display: flex;
+    gap: 10px;
+}
+#post-text{
+    margin-top: 20px;
+}

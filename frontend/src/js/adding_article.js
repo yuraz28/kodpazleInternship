@@ -161,14 +161,36 @@ function getTextPostStdContent() {
 
 async function sendContentAsText() {
     try {
-        var encodedContent = encodeURIComponent(getTextPostStdContent());
-        const response = await axios.post(`http://192.168.251.33:5050/api/updateposttext?newText=${encodedContent}`, '', {
-            headers: {
-                'Content-Type': 'text/plain;charset=utf-8'
-            }
-        });
+        // Получаем текст из элемента article_title
+        var titleValue = document.getElementById('article_title').value;
 
-        console.log('Ответ от сервера:', response.data);
+        // Предполагается, что allContent уже определен где-то выше в коде
+        var allContent = getTextPostStdContent();
+
+        // Удаляем 'undefined' в начале строки, если оно есть
+        if (allContent.startsWith('undefined')) {
+            allContent = allContent.replace(/^undefined/, '');
+}
+
+        // Проверяем, что allContent не undefined и не пустая строка
+        if (typeof allContent === 'string' && allContent.trim()!== '') {
+            var postData = {
+                name: titleValue, // Отправляем только текст из article_title
+                newText: allContent // Отправляем весь контент статьи, включая теги
+            };
+
+            var urlWithParams = `http://192.168.251.224:5050/api/updateposttext`;
+
+            const response = await axios.post(urlWithParams, postData, {
+                headers: {
+                    'Content-Type': 'application/json' 
+                }
+            });
+
+            console.log('Ответ от сервера:', response.data);
+        } else {
+            console.error('Контент статьи не найден или пуст');
+        }
     } catch (error) {
         console.error('Ошибка при отправке данных:', error);
     }
