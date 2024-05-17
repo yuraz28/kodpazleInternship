@@ -47,7 +47,7 @@ function closeModalAndSubmit() {
             "password": password
         };
 
-        var urlRegister = 'http://192.168.251.251:5050/api/user/register';
+        var urlRegister = 'http://192.168.251.224:5050/api/user/register';
 
         axios.post(urlRegister, user, {
             headers: {
@@ -75,7 +75,7 @@ function closeModalAndSubmit() {
     }
 }
 document.addEventListener('DOMContentLoaded', function() {
-    const url = 'http://192.168.251.224:5050/api/manager/getalluser';
+    const url = 'http://192.168.251.224:5050/api/user/getalluser';
 
     axios.get(url)
       .then(function (response) {
@@ -135,7 +135,7 @@ function displayUsers(users) {
     });
 }
 function showUserDetails(userId) {
-    const urlGetAllUsers = 'http://192.168.251.224:5050/api/manager/getalluser';
+    const urlGetAllUsers = 'http://192.168.251.224:5050/api/user/getalluser ';
 
     axios.get(urlGetAllUsers)
     .then(function(response) {

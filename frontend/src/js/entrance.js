@@ -7,8 +7,8 @@ document.getElementById('entrance').addEventListener('click', function() {
         "password": password
     };
 
-    var urlAuth = 'http://192.168.252.33:5050/api/user/auth';
-    var urlRole = 'http://192.168.252.33:5050/api/user/getrole';
+    var urlAuth = 'http://192.168.251.224:5050/api/user/auth';
+    var urlRole = 'http://192.168.251.224:5050/api/user/getrole';
 
     axios.post(urlAuth, requestBody, {
         headers: {
