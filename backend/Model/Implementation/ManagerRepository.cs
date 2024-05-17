@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 
 public class ManagerRepository : IManagerRepository
 {
@@ -9,7 +10,7 @@ public class ManagerRepository : IManagerRepository
         _context = context;
     }
 
-    public string AddUser(User user)
+    public async Task<string> AddUser(User user)
     {
         if(_context.Users.Any(u => u.Email == user.Email))
         {
@@ -24,8 +25,8 @@ public class ManagerRepository : IManagerRepository
             && user.Email.Length < 50
             && domens.Any(d => user.Email.Split('.').Last().Contains(d)))
         {
-            _context.Users.Add(user); 
-            _context.SaveChanges();
+            await _context.Users.AddAsync(user); 
+            await _context.SaveChangesAsync();
             return "Пользователь добавлен";
         }
         else
@@ -34,13 +35,13 @@ public class ManagerRepository : IManagerRepository
         }
     }
 
-    public bool DeleteUser(int id)
+    public async Task<bool> DeleteUser(int id)
     {
         var u = _context.Users.FirstOrDefault(t => t.ID == id);
         if (u != null)
         {
             _context.Users.Where(t => t.ID == id).ToList().ForEach(t => _context.Users.Remove(t));
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return true;
         }
 
@@ -55,72 +56,22 @@ public class ManagerRepository : IManagerRepository
         return _context.Users.Where(t => t.Role == "Участник").ToList();
     }
 
-    public User GetUser(int id)
+    public Task<User> GetUser(int id)
     {
-        return _context.Users.FirstOrDefault(t => t.ID == id);
+        return _context.Users.FirstOrDefaultAsync(t => t.ID == id);
     }
 
-    public User GetUser(string email)
+    public Task<User> GetUser(string email)
     {
-        return _context.Users.FirstOrDefault(t => t.Email == email);
+        return _context.Users.FirstOrDefaultAsync(t => t.Email == email);
     }
 
-    // public void AddMaterial(Material material)
+    // public void AddRate(Rate rateMail)
     // {
-    //     _context.Materials.Add(material);
-    //     _context.SaveChanges();
+    //     _context.Rates.AddAsync(rateMail);
     // }
 
-    // public void DeleteMaterial(int id)
-    // {
-    //     _context.Materials.Where(t => t.ID == id).ToList().ForEach(t => _context.Materials.Remove(t));
-    //     _context.SaveChanges();
-    // }
-
-    // public List<Material> GetAllMaterials()
-    // {
-    //     return _context.Materials.ToList();
-    // }
-
-    // public Material GetMaterial(int id)
-    // {
-    //     return _context.Materials.FirstOrDefault(t => t.ID == id);
-    // }
-
-    // public void AddFavoriteMaterial(int materialId, int userId)
-    // {
-        
-    //         var entity = _context.Users.FirstOrDefault(item => item.ID == userId);
-
-    //         if (entity != null)
-    //         {
-    //             entity.FavouritesMaterials.Add(materialId);
-    //             _context.SaveChanges();
-    //         }
-        
-    // }
-
-    // public void EditMaterial(EditMaterial material)
-    // {
-        
-    //         var entity = _context.Materials.FirstOrDefault(item => item.ID == material.ID);
-
-    //         if (entity != null)
-    //         {
-    //             if (material.Name != null) entity.Name = material.Name;
-    //             if (material.Information != null) entity.Information = material.Information;
-    //             if (material.UrlImage != null) entity.UrlImage = material.UrlImage;
-    //             _context.SaveChanges();
-    //         }
-        
-    // }
-
-    public void AddRate(Rate rateMail)
-    {
-        _context.Rates.Add(rateMail);
-    }
-
-public string AuthUser(User user, string pass)
+public async Task<string> AuthUser(User user, string pass)
 {
     if (user == null || string.IsNullOrEmpty(user.Name))
     {
@@ -128,7 +79,7 @@ public string AuthUser(User user, string pass)
         return "User null";
     }
 
-    User foundUser = _context.Users.FirstOrDefault(u => u.Name == user.Name);
+    User foundUser = await _context.Users.FirstOrDefaultAsync(u => u.Name == user.Name);
     if(foundUser != null)
     {
         if (user.Password != pass)

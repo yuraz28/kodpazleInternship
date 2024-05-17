@@ -60,4 +60,50 @@ public class FileController : ControllerBase
         if (await _fileRepository.DeleteFileAsync(id)) return Ok();
         return NotFound();
     }
+
+    public static string LoadTextFromFile(string filePath)
+    {
+        string result = string.Empty;
+
+        try
+        {
+            using (var reader = new StreamReader(filePath))
+            {
+                result = reader.ReadToEnd();
+            }
+        }
+        catch (FileNotFoundException ex)
+        {
+            Console.WriteLine($"Файл не найден: {ex.Message}");
+        }
+        catch (IOException ex)
+        {
+            Console.WriteLine($"Ошибка при чтении файла: {ex.Message}");
+        }
+
+        return result;
+    }
+
+    [HttpPost("/api/updateposttext")]
+    public IActionResult UpdatePostText(string newText)
+    {
+        try
+        {
+            // Чтение содержимого файла
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Model/Data/defolt.html");
+            string htmlContent = System.IO.File.ReadAllText(filePath);
+
+            // Изменение содержимого
+            htmlContent = htmlContent.Replace("<!--Будет основной текст-->", $"{newText}");
+
+            // Сохранение изменений
+            //System.IO.File.WriteAllText(filePath, htmlContent);
+
+            return Ok(htmlContent);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Internal server error: {ex.Message}");
+        }
+    }
 }

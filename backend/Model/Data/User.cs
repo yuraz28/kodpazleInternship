@@ -2,15 +2,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
 
 public class User
 { 
-
-    //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    // public int ID { get; set; } = Convert.ToInt32(Guid.NewGuid());
-    //public Nullable<long> ID { get; set; }
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int ID { get; set; }

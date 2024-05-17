@@ -13,7 +13,6 @@ public class LibraryContext : DbContext
     public DbSet<Rate> Rates { get; set; }
     public DbSet<Favorite> Favorites{ get; set; }
 
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     { 
         modelBuilder.Entity<Article>().HasKey(t=>t.ID);

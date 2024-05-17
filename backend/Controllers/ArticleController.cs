@@ -27,10 +27,10 @@ public class ArticleContorller : ControllerBase
     }
 
     [HttpDelete("/api/article")]
-    public async Task<IActionResult> Delete([FromBody] int articleId)
+    public async Task<IActionResult> Delete(int articleId)
     {
         if(await _article.Delete(articleId)) return Ok($"Статья с ID={articleId} была удалена.");
-        return NotFound("Статья с ID={articleId} нет в базе данных.");
+        return NotFound($"Статья с ID={articleId} нет в базе данных.");
 
     }
 
@@ -82,5 +82,4 @@ public class ArticleContorller : ControllerBase
         await _article.DeleteRate(articleId, UserId);
         return Ok();
     }
-    
 }
