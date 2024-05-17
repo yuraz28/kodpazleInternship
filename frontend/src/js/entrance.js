@@ -1,14 +1,14 @@
 document.getElementById('entrance').addEventListener('click', function() {
-    var login = document.getElementById('login').value;
+    var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
 
     var requestBody = {
-        "login": login,
+        "email": email,
         "password": password
     };
 
-    var urlAuth = 'http://192.168.161.33:5050/api/user/auth';
-    var urlRole = 'http://192.168.161.33:5050/api/user/getrole';
+    var urlAuth = 'http://192.168.252.33:5050/api/user/auth';
+    var urlRole = 'http://192.168.252.33:5050/api/user/getrole';
 
     axios.post(urlAuth, requestBody, {
         headers: {
@@ -17,8 +17,8 @@ document.getElementById('entrance').addEventListener('click', function() {
     })
     .then(function(response) {
         if (response.status === 200) {
-            localStorage.setItem('loggedInUser', login);
-            return axios.get(urlRole, { params: { login: login } });
+            localStorage.setItem('loggedInUser', email);
+            return axios.get(urlRole, { params: { email: email } });
         }
         throw new Error('Аутентификация не удалась');
     })

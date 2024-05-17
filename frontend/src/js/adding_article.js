@@ -1,3 +1,5 @@
+var lineNumber = 1;
+
 document.getElementById('categoryButton').addEventListener('click', function() {
     var categoryButtons = document.getElementById('categoryButtons');
     if (categoryButtons.style.display === 'none') {
@@ -9,17 +11,12 @@ document.getElementById('categoryButton').addEventListener('click', function() {
     }
 });
 
-// Массив для хранения ссылок на input элементы
-var inputs = [];
-
-// Переменная для отслеживания текущего номера списка
-var listCounter = 1;
-
-// Обработчик для кнопок категорий
+// Обработчики событий для кнопок в 'categoryButtons'
 var buttons = document.querySelectorAll('#categoryButtons button');
 buttons.forEach(function(button) {
     button.addEventListener('click', function() {
-        var articleText = document.querySelector('.article_text');
+        var articleText = document.querySelector('.text-post-std');
+        
         var newInput = document.createElement('input');
         newInput.type = 'text';
         newInput.id = 'input' + this.id;
@@ -28,12 +25,12 @@ buttons.forEach(function(button) {
         newInput.style.fontSize = '20px';
 
         articleText.appendChild(newInput);
-        inputs.push(newInput);
         newInput.focus();
 
         var categoryButtons = document.getElementById('categoryButtons');
         categoryButtons.style.display = 'none';
         categoryButtons.classList.remove('fadeIn');
+
         newInput.addEventListener('keydown', function(event) {
             if (event.key === 'Enter') {
                 event.preventDefault();
@@ -47,10 +44,10 @@ buttons.forEach(function(button) {
                         newElement = document.createElement('p');
                         newElement.textContent = textContent;
                     } else {
-                        // Логика для других типов input
-                        if (newInput.id === 'inputh1') {    
+                        if (newInput.id === 'inputh1') {
                             newElement = document.createElement('h1');
                             newElement.style.fontSize = '20px';
+                            newElement.style.marginTop = '10px';
                             newElement.style.fontWeight = '700';
                         } else if (newInput.id === 'inputli') {
                             newElement = document.createElement('li');
@@ -60,6 +57,8 @@ buttons.forEach(function(button) {
                             if (!ul) {
                                 ul = document.createElement('ul');
                                 ul.style.fontSize = '18px';
+                                ul.style.marginTop = '10px';
+                                ul.style.marginBottom = '10px';
                                 articleText.appendChild(ul);
                             }
                             ul.appendChild(newElement);
@@ -69,14 +68,10 @@ buttons.forEach(function(button) {
                                 ol = document.createElement('ol');
                                 articleText.appendChild(ol);
                             }
-                            if (articleText.querySelectorAll('ol li').length === 0) {
-                                listCounter = 1;
-                            }
                             newElement = document.createElement('li');
                             newElement.textContent = textContent;
-                            newElement.style.fontSize = '18px';
+                            newElement.style.fontSize = '18px'; 
                             ol.appendChild(newElement);
-                            listCounter++;
                         } else if (newInput.id === 'inputvideo') {
                             newElement = document.createElement('iframe');
                             newElement.src = textContent;
@@ -95,7 +90,7 @@ buttons.forEach(function(button) {
                             newElement.textContent = textContent;
                         }
                     }
-                    if (newInput.id!== 'inputli' && newInput.id!== 'inputnumli' && newInput.id!== 'inputvideo' && newInput.id!== 'inputphoto') {
+                    if (newInput.id !== 'inputli' && newInput.id !== 'inputnumli' && newInput.id !== 'inputvideo' && newInput.id !== 'inputphoto') {
                         newElement.textContent = textContent;
                         articleText.appendChild(newElement);
                     }
@@ -106,7 +101,7 @@ buttons.forEach(function(button) {
     });
 });
 
-// Обработчик для добавления изображений
+// Обработчик для кнопки 'photo'
 document.getElementById('photo').addEventListener('click', function() {
     var fileInput = document.createElement('input');
     fileInput.type = 'file';
@@ -121,10 +116,62 @@ document.getElementById('photo').addEventListener('click', function() {
                 imgElement.src = e.target.result;
                 imgElement.width = '800';
                 imgElement.height = '400';
-                document.querySelector('.article_text').appendChild(imgElement);
+                document.querySelector('.text-post-std').appendChild(imgElement);
             };
             reader.readAsDataURL(file);
         }
     });
     fileInput.click();
 });
+
+// Обработчик для кнопки 'button-back'
+document.addEventListener('DOMContentLoaded', function() {
+    var backButton = document.getElementById('button-back');
+    backButton.addEventListener('click', function() {
+        window.location.href = 'Manager.html';
+    });
+});
+
+// Обработчик для 'article_text'
+document.getElementById('article_text').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        var textContent = this.value;
+        if (textContent !== '') {
+            var newParagraph = document.createElement('p');
+            newParagraph.style.fontSize = '20px';
+            newParagraph.textContent = textContent;
+
+            var textPostStdElement = document.querySelector('.text-post-std');
+            textPostStdElement.appendChild(newParagraph);
+
+            this.value = '';
+        }
+    }
+});
+
+function getTextPostStdContent() {
+    var textPostStdElement = document.querySelector('.text-post-std');
+    var content = '';
+    for (var i = 0; i < textPostStdElement.childNodes.length; i++) {
+        content += textPostStdElement.childNodes[i].outerHTML;
+    }
+    return content;
+}
+
+async function sendContentAsText() {
+    try {
+        var encodedContent = encodeURIComponent(getTextPostStdContent());
+        const response = await axios.post(`http://192.168.251.33:5050/api/updateposttext?newText=${encodedContent}`, '', {
+            headers: {
+                'Content-Type': 'text/plain;charset=utf-8'
+            }
+        });
+
+        console.log('Ответ от сервера:', response.data);
+    } catch (error) {
+        console.error('Ошибка при отправке данных:', error);
+    }
+}
+
+document.getElementById('next_article').addEventListener('click', sendContentAsText);

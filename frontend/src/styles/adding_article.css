@@ -41,30 +41,6 @@ header{
     font-family: "Monrope";
     font-weight: 400;
 }
-.header-logo{
-    display: flex;
-    background-color: #191919;
-    height: 50px;
-    align-items: center;
-    justify-content: center;
-}
-.header-logo-p{
-    width: 1200px;
-}
-.nav{
-    display: flex;  
-    height: 60px;
-    align-items: center;
-    background-color: #fff;
-    justify-content: center;
-    filter: drop-shadow(0px 3px  4px #0000003f);
-}
-.nav-back{
-    display: flex;
-    align-items: center;
-    width: 1200px;
-
-}
 #button-back{
     display: flex;
     align-items: center;
@@ -73,40 +49,6 @@ header{
     gap: 10px;
     cursor: pointer;
     font-size: 18px;
-    padding: 0px;
-}
-@media (max-width: 768px) {
-   .nav-back {
-        padding-left: 50px;
-    }
-    #button-back {
-        font-size: 14px;
-    }
-    .header-logo-p{
-        padding-left: 50px;
-    }
-}
-@media (min-width: 769px) and (max-width: 1024px) {
-   .nav-back {
-        padding-left: 50px;
-    }  
-    #button-back {
-        font-size: 16px;
-    }
-    .header-logo-p{
-        padding-left: 50px;
-    }
-}
-@media (min-width: 1200px) and (max-width: 1920px) {
-    .nav-back {
-         padding-left: 50px;
-     }  
-     #button-back {
-         font-size: 16px;
-     }
-     .header-logo-p{
-         padding-left: 50px;
-     }
 }
 .lenta{
     display: flex;
@@ -160,10 +102,12 @@ header{
 }
 #article_text {
     flex-grow: 1;
-    border: none;
+    border: 2px solid black;
+    border-radius: 5px;
     background: none;
     font-size: 20px;
     font-weight: 400;
+    height: 80px;
 }
 .block_category{
     display: flex;
@@ -196,6 +140,7 @@ header{
     width: 240px;
     border-radius: 10px;
     animation: fadeIn 1s ease-out;
+    margin-left: 35px;
 }
 #categoryButtons button{
     display: flex;
@@ -207,6 +152,7 @@ header{
     text-align: left;
     cursor: pointer;
     transition: 0.2s ease-in;
+    padding: 10px;
 }
 #categoryButtons button:hover{
     transform: scale(1.1);
@@ -251,4 +197,9 @@ header{
     font-size: 20px;
     background: none;
     border: none;
+}
+.text-post-std{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
 }

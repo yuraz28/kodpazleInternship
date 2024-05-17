@@ -6,12 +6,14 @@
     <title>Добавление статьи</title>
     <link rel="stylesheet" href="src/styles/adding_article.css">
     <link rel="stylesheet" href="src/styles/normalize.css">
+    <link rel="stylesheet" href="src/styles/index.css">
+    <link rel="stylesheet" href="src/styles/animation.css">
 </head>
 <body>
     <header>
         <div class="header-logo">
             <div class="header-logo-p">
-                <img src="src/images/logo.png" alt="Логотип">
+                <p>Kod&Puzzle</p>
             </div>
         </div>  
         <div class="nav">
@@ -30,10 +32,6 @@
             </div>
             <div class="article_add">
                 <div>
-                    <div class="user">
-                        <img src="src/images/user.png" alt="Фото пользователя">
-                        <p id="name_user">Name</p>
-                    </div>
                     <div class="article_title">
                         <input placeholder="Введите название статьи" id="article_title" type="text">
                     </div>
@@ -49,11 +47,13 @@
                         </div>
                         <div id="categoryButtons" style="display: none;">
                             <button id="h1"><img src="src/images/h1.png" height="20px">Заголовок</button>
-                            <button id="code"><img src="src/images/code.png" height="20px">Код</button>
                             <button id="li"><img src="src/images/li.png" height="20px">Список</button>
                             <button id="numli"><img src="src/images/numli.png" height="20px">Номерной список</button>
                             <button id="video"><img src="src/images/video.png" height="20px">Медиаэлемент</button>
                             <button id="photo"><img src="src/images/photo.png" height="20px">Изображение</button>
+                        </div>
+                        <div class="text-post-std">
+
                         </div>
                     </div>
                         <div class="line">
@@ -66,6 +66,9 @@
             </div>
         </div>      
     </main>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="src/js/post.js"></script>
 <script src="src/js/adding_article.js"></script>
+<script src="src/js/add_post.js"></script>
 </body>
 </html>

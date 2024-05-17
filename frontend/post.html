@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Статья</title>
+    <link rel="stylesheet" href="/frontend/src/styles/index.css">
+    <link rel="stylesheet" href="src/styles/post.css">
+</head>
+<body>
+    <header>
+        <div class="header-logo">
+            <div class="header-logo-p">
+                <p>Kod&Puzzle</p>
+            </div>
+        </div>  
+        <div class="nav">
+            <div class="nav-back">
+                <button id="button-back"><img src="src/images/button.png">Вернуться назад</button>
+            </div>
+        </div>
+    </header>
+    <main class="post_list" id="post_list">
+        <div class="post_list_section">
+            <div class="post_list_info">
+                    <div id="post">
+                        <div class="post_header_section">
+                            <div class="post_header">
+                                <img src="src/images/profile.png" height="40px">
+                                <p>Name</p>
+                            </div>
+                        <h1 id="name_post">Name post</h1>
+                        <div id="post_time">
+                            <img src="src/images/clock.png" height="35px">
+                            <p id="time_post"></p>
+                        </div>
+                    </div>
+                    <div id="post-text">
+
+                        <!--Будет основной текст-->
+                        
+                    </div>
+                    <div style="margin-top: 40px;" class="create-line"></div>
+                    <footer>
+                        <div id="footer-post">
+                            <button id="up_post"><img src="src/images/arrow-circle-up.png" height="35px"></button>
+                            <div id="like" class="like-post">
+                                <button>
+                                    <img src="src/images/nolike.png">
+                                </button>
+                                <button>
+                                    <img src="src/images/nolike.png">
+                                </button>
+                                <button>
+                                    <img src="src/images/nolike.png">
+                                </button>
+                                <button>
+                                    <img src="src/images/nolike.png">
+                                </button>
+                                <button>
+                                    <img src="src/images/nolike.png">
+                                </button>
+                            </div>
+                            <div class="repost">
+                                <button>
+                                    <img src="src/images/repost.png">
+                                </button>
+                                <button>
+                                    <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.7132 4.59401L17.5 5.59714L18.2868 4.59401C20.0233 2.38012 22.666 1 25.375 1C30.1422 1 34 5.07576 34 10.4905C34 13.7891 32.6453 16.8514 30.0984 20.2474C27.5385 23.661 23.8592 27.3039 19.3345 31.7806C19.3344 31.7807 19.3344 31.7808 19.3343 31.7808C19.3343 31.7809 19.3342 31.7809 19.3342 31.781L17.5 33.5939L15.6658 31.781C15.6657 31.7808 15.6656 31.7807 15.6655 31.7806C11.1408 27.3039 7.46153 23.661 4.90159 20.2474C2.35473 16.8514 1 13.7891 1 10.4905C1 5.07576 4.85784 1 9.625 1C12.334 1 14.9767 2.38012 16.7132 4.59401Z" stroke="#FF0000" stroke-width="2"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
